@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FormUser(props) {
+export default function ParticipantPage(props) {
   return (
     <>
       teste
