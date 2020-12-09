@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from "react-router-dom";
-
+import { UserProvider } from './context/UserContext';
 import {
   AccomodationForm,
   ActivitiesForm,
@@ -14,11 +14,14 @@ import {
   SignIn,
   SignUp,
 } from './pages';
+import GlobalStyle from './assets/GlobalStyle';
 
 function App() {
   return (
-    <Router>
-      <Switch>
+    <UserProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Switch>
         <Route path='/' component={ClockPage} />
         <Route path='/pre-inscricao' component={SignUp} />
         <Route path='/login' component={SignIn} />
@@ -27,7 +30,8 @@ function App() {
         <Route path='/participante/hospedagem' component={AccomodationForm} />
         <Route path='/participante/atividades' component={ActivitiesForm} />
       </Switch>
-    </Router>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
