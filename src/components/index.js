@@ -6,7 +6,8 @@ import Title from './Title';
 import BlueBox from './BlueBox';
 import RightBlackBox from './RightBlackBox';
 import PageTwoColumn from './PageTwoColumn';
-
+import OptionsActivities from './OptionsActivities';
+import MenuParticipant from './MenuParticipant';
 
 export {
     Button, 
@@ -17,4 +18,6 @@ export {
     BlueBox,
     RightBlackBox,
     PageTwoColumn,
+    OptionsActivities,
+    MenuParticipant,
 }

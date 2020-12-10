@@ -23,7 +23,7 @@ const StyledButton = styled.button`
   height: ${(props) => props.height};
   background-color: #D1345B;
   border: none;
-  border-radius: 10px;
+
   font-family: 'Chelsea Market', cursive;
   font-size: 22px;
   line-height: 28px;
@@ -32,6 +32,8 @@ const StyledButton = styled.button`
   text-align: center;
   outline: none;
   cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 
   @media (max-width: 600px) {
     font-size: 18px;

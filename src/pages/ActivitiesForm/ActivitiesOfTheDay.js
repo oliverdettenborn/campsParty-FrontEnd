@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 
-import UserContext from '../../context/UserContext';
+import FormContext from '../../context/FormContext';
 import { Container, Date, MomentsContainer, modalStyle, ModalContainer } from './ActivitiesFormStyle';
 
 export default function ActivitiesOfTheDay({ day, countOneChoice }) {
     const [availableActivities, setAvailableActivities] = useState([]);
-    const { chosenActivities, setChosenActivities } = useContext(UserContext);
+    const { chosenActivities, setChosenActivities } = useContext(FormContext);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/event/activities/${day}`) // colocar headers
+            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`) // colocar headers
             .then(r => {
                 setAvailableActivities(r.data);
                 setLoading(false);

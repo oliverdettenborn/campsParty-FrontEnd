@@ -34,7 +34,7 @@ const SignInLink = styled(Link)`
   text-align: center;
   color: #EFEFEF;
   margin-bottom: 10px;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 1.5%;
   text-align: center;
@@ -48,6 +48,7 @@ const SignInLink = styled(Link)`
     width: 100%;
     left: initial;
     bottom: 10%;
+    position: absolute;
   }
 `;
 const Title = styled.h2`

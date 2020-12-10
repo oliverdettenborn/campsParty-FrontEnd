@@ -20,12 +20,12 @@ export default function SignIn() {
         setDisabledButton(true);
 
         const data = { email, password };
-        const request = axios.post('http://localhost:3000/api/users/sign-in', data);
+        const request = axios.post(`${process.env.REACT_APP_API_URL}/api/users/sign-in`, data);
         
         request.then(response => {
             setUser(response.data);
             setDisabledButton(false);
-            //history.push('/');
+            //history.push('/participante');
         });
 
         request.catch(err => {
