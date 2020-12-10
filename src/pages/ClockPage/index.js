@@ -13,7 +13,7 @@ export default function ClockPage() {
             <Title>Camps Party</Title>
             <Clock />
             <Gray>
-                <img src='./images/favicon.ico' />
+                <img src='./favicon.ico' />
                 <BottomBox>
                     { finsh 
                         ? <Button>QUERO PARTICIPAR</Button> 
