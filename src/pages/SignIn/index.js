@@ -1,18 +1,19 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-
+import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
 import { Title, RightBlackBox, PageTwoColumn } from '../../components/';
 import Aside from './Aside';
 import Form from './Form';
 
 export default function SignIn() {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ error, setError ] = useState(null);
     const [ disabledButton , setDisabledButton ] = useState(false);
-
+    const history = useHistory();
+    
     function handleSignIn(e) {
         e.preventDefault();
 
@@ -25,7 +26,7 @@ export default function SignIn() {
         request.then(response => {
             setUser(response.data);
             setDisabledButton(false);
-            //history.push('/participante');
+            history.push('/participante');
         });
 
         request.catch(err => {
