@@ -7,7 +7,7 @@ import {
 import { UserProvider } from './context/UserContext';
 import {
   AccomodationChoosing,
-  ActivitiesForm,
+  ActivitiesChoosing,
   ClockPage,
   FormUser,
   ParticipantPage,
@@ -27,7 +27,7 @@ function App() {
           <Route path='/login' component={SignIn} />
           <Route path='/participante/dados' component={FormUser} />
           <Route path='/participante/hospedagem' component={AccomodationChoosing} />
-          <Route path='/participante/atividades' component={ActivitiesForm} />
+          <Route path='/participante/atividades' component={ActivitiesChoosing} />
           <Route path='/' component={ParticipantPage} />
         </Switch>
       </BrowserRouter>

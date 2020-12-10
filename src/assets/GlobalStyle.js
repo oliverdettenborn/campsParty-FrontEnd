@@ -69,7 +69,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Chelsea Market', sans-serif;
     background: rgba(7, 7, 7, 0.7);
   }
-
+  
   button {
 	box-shadow: 0px 0px 0px transparent;
 	border: 0px solid transparent;

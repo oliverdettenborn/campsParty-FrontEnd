@@ -12,11 +12,33 @@ export function UserProvider(props) {
     price: ''
   });
 
+  const [chosenActivities, setChosenActivities] = useState(
+    {
+      friday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      },
+      saturday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      },
+      sunday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      }
+    }
+  );
+
   const value = {
     user,
     setUser,
     chosenHotel,
-    setChosenHotel
+    setChosenHotel,
+    chosenActivities,
+    setChosenActivities
   };
 
   return (
