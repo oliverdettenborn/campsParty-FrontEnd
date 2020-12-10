@@ -26,7 +26,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 console.log(err);
                 setLoading(false);
             });
-    }, []);
+    }, [day]);
 
     switch(day) {
         case 'friday':
@@ -38,6 +38,8 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
         case 'sunday':
             eventDay = 'Dia 03 - Domingo - 24/01/2021';
             break;
+        default:
+            break
     }
 
     const openModal = chosenHourOfDay => {
