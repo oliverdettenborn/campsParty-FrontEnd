@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Input, Error, Button } from '../../components/';
+import { Input, Error, Button, InputWithMask } from '../../components/';
 
 export default function Form(props) {
   const { 
@@ -11,19 +11,20 @@ export default function Form(props) {
     setEmail,
     password,
     setPassword,
-    confirmPassword,
-    setConfirmPassword,
+    passwordConfirmation,
+    setPasswordConfirmation,
     error,
     disabledButton
   } = props;
 
   return (
     <Container onSubmit={handleSignUp}>
-        <Input
+        <InputWithMask
             type='text'
             placeholder='Cpf'
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
+            mask='999.999.999-99'
         />
         <Input 
             type='email'
@@ -40,8 +41,8 @@ export default function Form(props) {
         <Input 
             type='password'
             placeholder='Confirme a senha'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
         {error && <Error>{error}</Error>}                    
         <Button
