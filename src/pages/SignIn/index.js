@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import UserContext from '../../context/UserContext';
-import { LeftBox, RightBox, Title, Input, Error, Button } from '../../components/';
+import { BlueBox, Title, Input, Error, Button } from '../../components/';
 
 export default function SignIn() {
     const { user, setUser } = useContext(UserContext);
@@ -40,7 +40,7 @@ export default function SignIn() {
                 <LeftTitle> Acesse sua área do participante e complete sua inscrição </LeftTitle>
             </LeftContainer>
 
-            <RightBox>
+            <div>
                 <Title />
                 <Form onSubmit={handleSignIn}>
                     <Input 
@@ -70,7 +70,7 @@ export default function SignIn() {
                 </Form>
 
                 <SignInLink to= '/sign-up'> Ainda não fez sua pré-inscrição ? </SignInLink>
-            </RightBox>
+            </div>
         </Main>
     );
 }
@@ -94,7 +94,7 @@ const Form = styled.form`
     }
 `;
 
-const LeftContainer = styled(LeftBox)`
+const LeftContainer = styled(BlueBox)`
     justify-content: center;
 `;
 

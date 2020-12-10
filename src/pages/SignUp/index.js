@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { LeftBox, RightBox, Title, Input, Error, Button } from '../../components/';
 import axios from 'axios';
+
+import { Title  } from '../../components/';
+import Aside from './Aside';
+import Form from './Form';
+import { media } from '../../assets/query';
 
 export default function SignIn() {
     const [ cpf, setCpf ] = useState("");
@@ -20,7 +24,7 @@ export default function SignIn() {
 
         const data = {email, cpf, password, confirmPassword};
         const request = axios.post('http://localhost:3000/api/users/sign-up', data);
-              
+
         request.then(response => {
             setDisabledButton(false);
             history.push('/sign-in');
@@ -42,98 +46,46 @@ export default function SignIn() {
 
     return (
         <Main>
-            <LeftContainer>
-                <LeftTitle> Faça agora a sua pré-inscrição para o evento </LeftTitle>
-            </LeftContainer>
-
-            <RightBox>
+            <Aside />
+            <Container>
                 <Title />
-                <Form onSubmit={handleSignUp}>
-                    <Input 
-                        type='text'
-                        placeholder='Cpf'
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
-                    />
-                    <Input 
-                        type='email'
-                        placeholder='E-mail'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input 
-                        type='password'
-                        placeholder='Senha'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <Input 
-                        type='password'
-                        placeholder='Confirme a senha'
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                    {error && <Error>{error}</Error>}                    
-                    <Button
-                        width='80%'
-                        height='50px'
-                        type='submit'
-                        disabledButton={disabledButton}
-                    >
-                        Quero Participar
-                    </Button>
-                    
-                </Form>
-
-                <SignInLink to= '/sign-in'> Gostaria de completar sua inscrição ? </SignInLink>
-            </RightBox>
+                <Form 
+                    handleSignUp={handleSignUp}
+                    cpf={cpf}
+                    setCpf={setCpf}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    confirmPassword={confirmPassword}
+                    setConfirmPassword={setConfirmPassword}
+                    error={error}
+                    disabledButton={disabledButton}
+                />
+            </Container>
         </Main>
     );
 }
 
-const Form = styled.form`
+const Main = styled.main`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    ${media}{
+        flex-direction: column-reverse;
+    }
+`;
+const Container = styled.section`
+    width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    background: #34d1bf;
-    border-radius: 15px;
-    padding: 30px;
-    align-self: center;
-    margin: 30px 0px 20px 0px;
+    margin-top: 2%;
 
-    @media (max-width: 600px) {
-        width: 100%;
-        margin-top: 30px;
-        padding: 15px;
-        margin-top: 25px;
+    ${media}{
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 15%;
     }
-`;
-
-const LeftContainer = styled(LeftBox)`
-    justify-content: center;
-`;
-
-const SignInLink = styled(Link)`
-    font-size: 22px;
-    text-align: center;
-    color: #EFEFEF;
-    margin-bottom: 10px;
-
-    :hover {
-        text-decoration: underline;
-    }
-`;
-
-const LeftTitle = styled.h2`
-    font-size: 32px;
-    font-family: 'Chelsea Market', cursive;
-    color: #EFEFEF;
-    text-align: center;
-`;
-
-const Main = styled.main`
-    display: flex;
-    width: 100vw;
-    height: 100vh;
 `;

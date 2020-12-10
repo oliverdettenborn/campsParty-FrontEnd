@@ -22,8 +22,8 @@ function App() {
       <BrowserRouter>
         <GlobalStyle />
         <Switch>
-        <Route path='/' component={ClockPage} />
-        <Route path='/pre-inscricao' component={SignUp} />
+        {/* <Route path='/' component={ClockPage} /> */}
+        <Route path='/' component={SignUp} />
         <Route path='/login' component={SignIn} />
         <Route path='/participante' component={ParticipantPage} />
         <Route path='/participante/dados' component={FormUser} />

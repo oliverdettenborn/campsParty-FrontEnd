@@ -1,23 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  strong {
-        font-weight: bold;
-    }
-
-  svg {
-    cursor: pointer;
-    color: inherit;
-  }
   /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)
@@ -64,6 +47,27 @@ const GlobalStyle = createGlobalStyle`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  strong {
+        font-weight: bold;
+    }
+
+  svg {
+    cursor: pointer;
+    color: inherit;
+  }
+  body{
+    font-family: 'Chelsea Market', sans-serif;
+    background: rgba(7, 7, 7, 0.7);
   }
 `
 
