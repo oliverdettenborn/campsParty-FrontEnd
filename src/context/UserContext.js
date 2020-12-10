@@ -7,6 +7,10 @@ export default UserContext;
 
 export function UserProvider(props) {
   const [user, setUser] = useLocalStorage('@campsParty', {});
+  const [chosenHotel, setChosenHotel] = useState({
+    name: '',
+    price: ''
+  });
 
   const [chosenActivities, setChosenActivities] = useState(
     {
@@ -31,6 +35,8 @@ export function UserProvider(props) {
   const value = {
     user,
     setUser,
+    chosenHotel,
+    setChosenHotel,
     chosenActivities,
     setChosenActivities
   };
