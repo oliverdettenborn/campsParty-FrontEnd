@@ -9,6 +9,10 @@ export default function HotelItem({ hotel }) {
 
     Modal.setAppElement('#root');
 
+    const processHotelChoice = () => {
+        // Salvar escolha de hotel; pensar um nome melhor para essa função
+    }
+
     return (
         <>
             <Item
@@ -39,7 +43,7 @@ export default function HotelItem({ hotel }) {
                             
                             <div>
                                 <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
-                                <button>Confirmar</button>
+                                <button onClick={processHotelChoice}>Confirmar</button>
                             </div>
                         </PriceAndButtons>
                     </div>
