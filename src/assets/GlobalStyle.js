@@ -68,6 +68,10 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Chelsea Market', sans-serif;
     background: rgba(7, 7, 7, 0.7);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  button{
+    cursor: pointer;
   }
 `
 
