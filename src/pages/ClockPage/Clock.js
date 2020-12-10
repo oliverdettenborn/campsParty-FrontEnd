@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
 
-import ClockContext from '../../contexts/ClockContext';
+import ClockContext from '../../context/ClockContext';
 
 export default function Clock() {
-    const { takes } = useContext(ClockContext)
+    const { takes } = useContext(ClockContext);
 
 
     return (
@@ -13,7 +13,7 @@ export default function Clock() {
                 takes.map((take) => {
                     return (
                         <Time key={take.id}>
-                            {take.time} {take.name}
+                            { take.name === 'S' ?  ` ${take.time}${take.name}` : ` ${take.time}${take.name} :`}
                         </Time>
                     );
                 })
@@ -28,6 +28,17 @@ const Container = styled.article `
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: absolute;
+    top: 45%;
+    font-family: 'Saira Stencil One', cursive;
+    font-size: 90px;
+    color: #D1345B;
+
+    @media (max-width: 600px) {
+        font-size: 28px;
+        position: absolute;
+        top: 40%;
+      }
 `; 
 
 const Time = styled.div `

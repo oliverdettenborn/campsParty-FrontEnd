@@ -11,6 +11,8 @@ export function ClockProvider(props) {
     const [ minutes, setMinutes ] = useState('');
     const [ seconds, setSeconds ] = useState('');
 
+    const finsh = seconds === 0 && minutes === 0 && hours === 0 && days === 0 ? true : false;
+
     const finalDate = new Date('december 11 2020 18:00:00');
 
     const updateCountdown = () => {
@@ -20,7 +22,6 @@ export function ClockProvider(props) {
         setHours(Math.floor(differnce / 1000 / 60 / 60) % 24);
         setMinutes(Math.floor(differnce / 1000 / 60) % 60);
         setSeconds(Math.floor(differnce / 1000) % 60);
-        console.log('1 segundo');
     }
     
     useEffect(() => {
@@ -35,7 +36,7 @@ export function ClockProvider(props) {
     ];
 
     return (
-        <ClockContext.Provider value={{ days, setDays, hours, setHours, minutes, setMinutes, seconds, setSeconds, takes }}>
+        <ClockContext.Provider value={{ days, setDays, hours, setHours, minutes, setMinutes, seconds, setSeconds, takes, finsh }}>
           {props.children}
         </ClockContext.Provider>
       );
