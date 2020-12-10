@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import { Container } from "./AccommodationFormStyle";
 import HotelItem from './HotelItem';
+import UserContext from "../../context/UserContext";
 
 export default function AccomodationChoosing() {
     const [hotelsList, serHotelsList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
+        const headers = {
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
         axios
-            .get(`${process.env.REACT_APP_API_URL}/partners/hotels`) // colocar headers de autorização
+            .get(`${process.env.REACT_APP_API_URL}/partners/hotels`, null, headers) // colocar headers de autorização
             .then(r => {
                 serHotelsList(r.data);
                 setLoading(false);
