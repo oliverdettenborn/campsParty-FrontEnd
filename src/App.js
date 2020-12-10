@@ -18,7 +18,6 @@ import {
 
 function App() {
   const {finish} = useContext(ClockContext);
-  console.log(finish);
 
   return (
       <UserProvider>
