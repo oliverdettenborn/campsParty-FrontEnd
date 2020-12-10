@@ -7,6 +7,8 @@ export default function HotelItem({ hotel }) {
     const [isMouseOver, setIsMouseOver] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    Modal.setAppElement('#root');
+
     return (
         <>
             <Item
@@ -23,7 +25,7 @@ export default function HotelItem({ hotel }) {
     
             <Modal style={modalStyle} isOpen={isModalOpen}>
                 <ModalContainer>
-                    <img src={hotel.picUrl} />
+                    <img alt={hotel.name} src={hotel.picUrl} />
 
                     <div>
                         <div>
