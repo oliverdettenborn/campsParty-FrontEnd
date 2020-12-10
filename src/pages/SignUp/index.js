@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { Title, RightBlackBox, PageTwoColumn } from '../../components/';
 import Aside from './Aside';
 import Form from './Form';
+import UserContext from '../../context/UserContext';
 
 export default function SignIn() {
+    const { user } = useContext(UserContext);
     const [ cpf, setCpf ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
-    const [ confirmPassword, setConfirmPassword ] = useState("");
+    const [ passwordConfirmation, setPasswordConfirmation ] = useState("");
     const [ error, setError ] = useState(null);
     const [ disabledButton , setDisabledButton ] = useState(false);
     const history = useHistory();
+
+    if(user && user.token){
+        history.push('/participante')
+    }
 
     function handleSignUp(e) {
         e.preventDefault();
         if (disabledButton) return;
         setDisabledButton(true);
 
-        const data = {email, cpf, password, confirmPassword};
+        const data = {email, cpf, password, passwordConfirmation};
         const request = axios.post(`${process.env.REACT_APP_API_URL}/api/users/sign-up`, data);
 
         request.then(response => {
@@ -55,8 +61,8 @@ export default function SignIn() {
                     setEmail={setEmail}
                     password={password}
                     setPassword={setPassword}
-                    confirmPassword={confirmPassword}
-                    setConfirmPassword={setConfirmPassword}
+                    passwordConfirmation={passwordConfirmation}
+                    setPasswordConfirmation={setPasswordConfirmation}
                     error={error}
                     disabledButton={disabledButton}
                 />

@@ -11,8 +11,8 @@ export default function Form(props) {
     setEmail,
     password,
     setPassword,
-    confirmPassword,
-    setConfirmPassword,
+    passwordConfirmation,
+    setPasswordConfirmation,
     error,
     disabledButton
   } = props;
@@ -41,8 +41,8 @@ export default function Form(props) {
         <Input 
             type='password'
             placeholder='Confirme a senha'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
         {error && <Error>{error}</Error>}                    
         <Button
