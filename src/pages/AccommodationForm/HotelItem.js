@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Modal from 'react-modal';
 
+import UserContext from "../../context/UserContext";
 import { Item, modalStyle, ModalContainer, PriceAndButtons } from './AccommodationFormStyle';
 
 export default function HotelItem({ hotel }) {
     const [isMouseOver, setIsMouseOver] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { setChosenHotel } = useContext(UserContext);
+    const history = useHistory();
 
     Modal.setAppElement('#root');
 
     const processHotelChoice = () => {
-        // Salvar escolha de hotel; pensar um nome melhor para essa função
+        setChosenHotel({
+            name: hotel.name,
+            price: hotel.price
+        });
+
+        history.push('/participante/atividades');
     }
 
     return (

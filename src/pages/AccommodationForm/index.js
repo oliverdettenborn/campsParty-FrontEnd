@@ -5,7 +5,6 @@ import { Container } from "./AccommodationFormStyle";
 import HotelItem from './HotelItem';
 
 export default function AccomodationChoosing() {
-    // const token
     const [hotelsList, serHotelsList] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -28,7 +27,7 @@ export default function AccomodationChoosing() {
             </div>
 
             <ul>
-                {loading ? 'Carregando' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
+                {loading ? 'Carregando...' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
             </ul>
         </Container>
     );
