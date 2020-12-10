@@ -5,8 +5,8 @@ import { FormProvider } from './context/FormContext';
 import GlobalStyle from './assets/GlobalStyle';
 
 import {
-  AccomodationForm,
-  ActivitiesForm,
+  AccomodationChoosing,
+  ActivitiesChoosing,
   ClockPage,
   FormUser,
   ParticipantPage,
@@ -27,8 +27,8 @@ function App() {
             <Route path='/login' component={SignIn} />
             <Route path='/participante' component={ParticipantPage} />
             <Route path='/participante/dados' component={FormUser} />
-            <Route path='/participante/hospedagem' component={AccomodationForm} />
-            <Route path='/participante/atividades' component={ActivitiesForm} />
+            <Route path='/participante/hospedagem' component={AccomodationChoosing} />
+            <Route path='/participante/atividades' component={ActivitiesChoosing} />
             <Route path='/participante/visualizar-inscricao' component={ViewSubscription} />
           </Switch>
         </BrowserRouter>
