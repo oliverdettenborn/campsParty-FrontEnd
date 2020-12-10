@@ -6,7 +6,7 @@ import ClockContext from '../../context/ClockContext';
 import Clock from './Clock';
 
 export default function ClockPage() {
-    const { finsh } = useContext(ClockContext);
+    const { finish } = useContext(ClockContext);
 
     return (
         <Container>
@@ -15,7 +15,7 @@ export default function ClockPage() {
             <Gray>
                 <img src='./favicon.ico' />
                 <BottomBox>
-                    { finsh 
+                    { finish 
                         ? <Button>QUERO PARTICIPAR</Button> 
                         : <p>Ansioso pela Camps Party 2021? <br/><br/> As pré-inscrições para o evento iniciam nesta sexta (11/12) às 18hrs.</p>
                     }
