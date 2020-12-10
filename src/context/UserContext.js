@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import useLocalStorage from '../hook/useLocalStorage';
 
 const UserContext = createContext();
@@ -8,8 +8,35 @@ export default UserContext;
 export function UserProvider(props) {
   const [user, setUser] = useLocalStorage('@campsParty', {});
 
+  const [chosenActivities, setChosenActivities] = useState(
+    {
+      friday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      },
+      saturday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      },
+      sunday: {
+        morning: '',
+        afternoon: '',
+        night: ''
+      }
+    }
+  );
+
+  const value = {
+    user,
+    setUser,
+    chosenActivities,
+    setChosenActivities
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={value}>
       {props.children}
     </UserContext.Provider>
   );

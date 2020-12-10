@@ -25,10 +25,10 @@ function App() {
         {/* <Route path='/' component={ClockPage} /> */}
         <Route path='/pre-inscricao' component={SignUp} />
         <Route path='/login' component={SignIn} />
-        <Route path='/' component={ParticipantPage} />
         <Route path='/participante/dados' component={FormUser} />
         <Route path='/participante/hospedagem' component={AccomodationForm} />
         <Route path='/participante/atividades' component={ActivitiesForm} />
+        <Route path='/' component={ParticipantPage} />
       </Switch>
       </BrowserRouter>
     </UserProvider>
