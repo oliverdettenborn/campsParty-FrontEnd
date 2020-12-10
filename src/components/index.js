@@ -4,6 +4,9 @@ import Input from './Input';
 import Loading from './Loading';
 import Title from './Title';
 import BlueBox from './BlueBox';
+import RightBlackBox from './RightBlackBox';
+import PageTwoColumn from './PageTwoColumn';
+
 
 export {
     Button, 
@@ -11,5 +14,7 @@ export {
     Input,
     Loading,
     Title,
-    BlueBox
+    BlueBox,
+    RightBlackBox,
+    PageTwoColumn,
 }

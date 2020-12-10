@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import axios from 'axios';
 
-import { Title  } from '../../components/';
+import { Title, RightBlackBox, PageTwoColumn } from '../../components/';
 import Aside from './Aside';
 import Form from './Form';
-import { media } from '../../assets/query';
 
 export default function SignIn() {
     const [ cpf, setCpf ] = useState("");
@@ -45,9 +43,9 @@ export default function SignIn() {
     }
 
     return (
-        <Main>
+        <PageTwoColumn>
             <Aside />
-            <Container>
+            <RightBlackBox>
                 <Title />
                 <Form 
                     handleSignUp={handleSignUp}
@@ -62,30 +60,7 @@ export default function SignIn() {
                     error={error}
                     disabledButton={disabledButton}
                 />
-            </Container>
-        </Main>
+            </RightBlackBox>
+        </PageTwoColumn>
     );
 }
-
-const Main = styled.main`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    ${media}{
-        flex-direction: column-reverse;
-    }
-`;
-const Container = styled.section`
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2%;
-
-    ${media}{
-        width: 95%;
-        margin: 0 auto;
-        margin-top: 15%;
-    }
-`;

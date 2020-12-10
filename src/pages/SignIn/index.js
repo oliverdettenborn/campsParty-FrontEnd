@@ -1,13 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import axios from 'axios';
 
 import UserContext from '../../context/UserContext';
-import { Title, Input, Error, Button } from '../../components/';
+import { Title, RightBlackBox, PageTwoColumn } from '../../components/';
 import Aside from './Aside';
 import Form from './Form';
-import { media } from '../../assets/query';
 
 export default function SignIn() {
     const { user, setUser } = useContext(UserContext);
@@ -38,9 +35,9 @@ export default function SignIn() {
     }
 
     return (
-        <Main>
+        <PageTwoColumn>
             <Aside />
-            <Container>
+            <RightBlackBox>
                 <Title />
                 <Form
                     handleSignIn={handleSignIn}
@@ -51,30 +48,7 @@ export default function SignIn() {
                     error={error}
                     disabledButton={disabledButton}
                 /> 
-            </Container>
-        </Main>
+            </RightBlackBox>
+        </PageTwoColumn>
     );
 }
-
-const Main = styled.main`
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    ${media}{
-        flex-direction: column-reverse;
-    }
-`;
-const Container = styled.section`
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5%;
-
-    ${media}{
-        width: 95%;
-        margin: 0 auto;
-        margin-top: 15%;
-    }
-`;

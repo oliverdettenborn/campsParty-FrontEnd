@@ -6,7 +6,7 @@ const UserContext = createContext();
 export default UserContext;
 
 export function UserProvider(props) {
-  const [user, setUser] = useLocalStorage('@campsParty', null);
+  const [user, setUser] = useLocalStorage('@campsParty', {});
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
