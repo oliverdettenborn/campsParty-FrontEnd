@@ -1,4 +1,4 @@
-import AccomodationForm from './AccommodationForm';
+import AccomodationChoosing from './AccommodationForm';
 import ActivitiesForm from './ActivitiesForm';
 import ClockPage from './ClockPage';
 import FormUser from './FormUser';
@@ -7,7 +7,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 
 export {
-  AccomodationForm,
+  AccomodationChoosing,
   ActivitiesForm,
   ClockPage,
   FormUser,

@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { UserProvider } from './context/UserContext';
 import {
-  AccomodationForm,
+  AccomodationChoosing,
   ActivitiesForm,
   ClockPage,
   FormUser,
@@ -22,14 +22,14 @@ function App() {
       <BrowserRouter>
         <GlobalStyle />
         <Switch>
-        {/* <Route path='/' component={ClockPage} /> */}
-        <Route path='/pre-inscricao' component={SignUp} />
-        <Route path='/login' component={SignIn} />
-        <Route path='/' component={ParticipantPage} />
-        <Route path='/participante/dados' component={FormUser} />
-        <Route path='/participante/hospedagem' component={AccomodationForm} />
-        <Route path='/participante/atividades' component={ActivitiesForm} />
-      </Switch>
+          {/* <Route path='/' component={ClockPage} /> */}
+          <Route path='/pre-inscricao' component={SignUp} />
+          <Route path='/login' component={SignIn} />
+          <Route path='/participante/dados' component={FormUser} />
+          <Route path='/participante/hospedagem' component={AccomodationChoosing} />
+          <Route path='/participante/atividades' component={ActivitiesForm} />
+          <Route path='/' component={ParticipantPage} />
+        </Switch>
       </BrowserRouter>
     </UserProvider>
   );
