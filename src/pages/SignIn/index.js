@@ -7,13 +7,17 @@ import Aside from './Aside';
 import Form from './Form';
 
 export default function SignIn() {
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ error, setError ] = useState(null);
     const [ disabledButton , setDisabledButton ] = useState(false);
     const history = useHistory();
     
+    if(user && user.token){
+        history.push('/participante');
+    }
+
     function handleSignIn(e) {
         e.preventDefault();
 

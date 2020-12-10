@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Input, Error, Button } from '../../components/';
+import { Input, Error, Button, InputWithMask } from '../../components/';
 
 export default function Form(props) {
   const { 
@@ -24,6 +24,7 @@ export default function Form(props) {
             placeholder='Cpf'
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
+            mask='999.999.999-99'
         />
         <Input 
             type='email'
