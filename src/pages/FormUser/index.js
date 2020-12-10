@@ -33,8 +33,7 @@ export default function FormUser() {
     e.preventDefault();
     if(disabledButton) return;
     setDisabledButton(true);
-
-    setFormData({
+    const data = {
       name,
       lastName,
       address,
@@ -44,8 +43,11 @@ export default function FormUser() {
       uf,
       postalCode,
       gender,
-      phone
-    })
+      phone,
+      accommodationId: "6",
+      admissionCost: "0,00"
+    }
+    setFormData(data);
 
     if(user.ticketType === "hotel"){
       history.push('/participante/hospedagem')
@@ -53,7 +55,7 @@ export default function FormUser() {
       axios({
         method: user.completeRegistration ? 'put' : 'post',
         url: `${process.env.REACT_APP_API_URL}/api/user/subscription`,
-        data: formData,
+        data,
         headers: {"Authorization": `Bearer ${user.token}`}
       })
       .then(response => {
@@ -62,15 +64,14 @@ export default function FormUser() {
         history.push('/participante');
       })
       .catch(err => {
-          setError(err);
-          if (err.response.status === 422) { 
-              setError('Preencha corretamente os campos');
-          } else if (err.response.status === 409) {
-              setError('Cpf ou email já cadastrado');
-          } else {
-              setError('Houve um erro ao cadastrar');
-          }
-          setDisabledButton(false);
+        if (err.response.status === 422) { 
+          setError('Preencha corretamente os campos');
+        } else if (err.response.status === 409) {
+          setError('Cpf ou email já cadastrado');
+        } else {
+          setError('Houve um erro ao cadastrar');
+        }
+        setDisabledButton(false);
       });
     }
   }
