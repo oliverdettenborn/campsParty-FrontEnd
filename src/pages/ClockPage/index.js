@@ -45,8 +45,8 @@ const Gray = styled.div `
         margin: 15px;
     }
     @media (max-width: 600px) {
-        width: 100%;
         background: linear-gradient(149.71deg, #3454D1 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(329.71deg, #34D1BF 0%, rgba(52, 209, 191, 0) 100%);
+        width: 100%;
         align-items: center;
     }
 `;
@@ -65,6 +65,9 @@ const Gradient = styled.div `
     width: 50%;
     height: 100%;
     background: linear-gradient(149.71deg, #3454D1 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(329.71deg, #34D1BF 0%, rgba(52, 209, 191, 0) 100%);
+    @media (max-width: 600px) {
+        display: none;
+    }
 `;
 
 const Title = styled.h1 `
