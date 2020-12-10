@@ -3,8 +3,7 @@ import Error from './Error';
 import Input from './Input';
 import Loading from './Loading';
 import Title from './Title';
-import LeftBox from './LeftBox';
-import RightBox from './RightBox';
+import BlueBox from './BlueBox';
 
 export {
     Button, 
@@ -12,6 +11,5 @@ export {
     Input,
     Loading,
     Title,
-    LeftBox,
-    RightBox
+    BlueBox
 }

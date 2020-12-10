@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import UserContext from '../../context/UserContext';
-import { LeftBox, RightBox, Title, Input, Error, Button } from '../../components/';
+import { Title, Input, Error, Button } from '../../components/';
+import Aside from './Aside';
+import Form from './Form';
+import { media } from '../../assets/query';
 
 export default function SignIn() {
     const { user, setUser } = useContext(UserContext);
@@ -21,7 +24,7 @@ export default function SignIn() {
 
         const data = { email, password };
         const request = axios.post('http://localhost:3000/api/users/sign-in', data);
-              
+        
         request.then(response => {
             setUser(response.data);
             setDisabledButton(false);
@@ -36,88 +39,42 @@ export default function SignIn() {
 
     return (
         <Main>
-            <LeftContainer>
-                <LeftTitle> Acesse sua área do participante e complete sua inscrição </LeftTitle>
-            </LeftContainer>
-
-            <RightBox>
+            <Aside />
+            <Container>
                 <Title />
-                <Form onSubmit={handleSignIn}>
-                    <Input 
-                        type='email'
-                        placeholder='E-mail'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input 
-                        type='password'
-                        placeholder='Senha'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    
-                    {error && <Error>{error}</Error>}
-
-                    <Button
-                        width='80%'
-                        height='50px'
-                        type='submit'
-                        disabledButton={disabledButton}
-                    >
-                        Completar Inscrição
-                    </Button>
-                    
-                </Form>
-
-                <SignInLink to= '/sign-up'> Ainda não fez sua pré-inscrição ? </SignInLink>
-            </RightBox>
+                <Form
+                    handleSignIn={handleSignIn}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    error={error}
+                    disabledButton={disabledButton}
+                /> 
+            </Container>
         </Main>
     );
 }
 
-const Form = styled.form`
+const Main = styled.main`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    ${media}{
+        flex-direction: column-reverse;
+    }
+`;
+const Container = styled.section`
+    width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    background: #34d1bf;
-    border-radius: 15px;
-    padding: 30px;
-    align-self: center;
-    margin: 50px 0px 20px 0px;
+    margin-top: 5%;
 
-    @media (max-width: 600px) {
-        width: 100%;
-        margin-top: 30px;
-        padding: 15px;
-        margin-top: 25px;
+    ${media}{
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 15%;
     }
-`;
-
-const LeftContainer = styled(LeftBox)`
-    justify-content: center;
-`;
-
-const SignInLink = styled(Link)`
-    font-size: 22px;
-    text-align: center;
-    color: #EFEFEF;
-    margin-bottom: 10px;
-
-    :hover {
-        text-decoration: underline;
-    }
-`;
-
-const LeftTitle = styled.h2`
-    font-size: 32px;
-    font-family: 'Chelsea Market', cursive;
-    color: #EFEFEF;
-    text-align: center;
-`;
-
-const Main = styled.main`
-    display: flex;
-    width: 100vw;
-    height: 100vh;
 `;

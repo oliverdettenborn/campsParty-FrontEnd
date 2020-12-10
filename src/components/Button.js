@@ -11,7 +11,7 @@ export default function Button(props) {
       disabled={props.disabledButton}
     >
       {props.disabledButton
-        ? '...'
+        ? 'Carregando...'
         : props.children
       }
     </StyledButton>

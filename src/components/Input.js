@@ -14,10 +14,10 @@ export default function Input(props) {
 };
 
 const StyledInput = styled.input`
-  background: #FFFFFF;
-  border-radius: 10px;
+  background: #EFEFEF;
+  border-radius: 15px;
   width: 100%;
-  height: 50px;
+  height: 60px;
   margin-bottom: 15px;
   font-family: 'Chelsea Market', cursive;
   font-size: 22px;

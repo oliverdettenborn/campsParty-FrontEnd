@@ -1,11 +1,17 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const LeftBox = styled.section`
+export default function BlueBox(props) {
+    return (
+        <Container>
+            {props.children}
+        </Container>
+    )
+};
+
+const Container = styled.aside`
     height: 100%;
     width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background: rgba(52, 84, 209, 0.75);
     padding: 15px;
 
@@ -13,5 +19,3 @@ const LeftBox = styled.section`
         display: none;
     }
 `;
-
-export default LeftBox;
