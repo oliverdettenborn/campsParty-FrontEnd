@@ -9,6 +9,7 @@ export default function Button(props) {
       height={props.height}
       background={props.background}
       color={props.color}
+      margin={props.margin}
     >
       {props.children}
     </StyledBox>
@@ -19,7 +20,7 @@ const StyledBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: ${(props) => props.background};
-  border: ${(props) => props.border || 'none'};
+  margin: ${(props) => props.margin};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   color: ${(props) => props.color || '#EFEFEF'};

@@ -17,7 +17,6 @@ export default function InputWithMask(props) {
 const styledInput = {
   background: "#EFEFEF",
   borderRadius: "15px",
-  width: "100%",
   height: "60px",
   marginBottom: "15px",
   fontFamily: "'Chelsea Market', cursive",

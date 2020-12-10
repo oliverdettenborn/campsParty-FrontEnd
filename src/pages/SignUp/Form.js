@@ -59,12 +59,12 @@ export default function Form(props) {
         </Select>
         {error && <Error>{error}</Error>}                    
         <Button
-            width='80%'
-            height='50px'
-            type='submit'
-            disabledButton={disabledButton}
+          width='80%'
+          height='50px'
+          type='submit'
+          disabledButton={disabledButton}
         >
-            Quero Participar
+          Quero Participar
         </Button>
         
     </Container>

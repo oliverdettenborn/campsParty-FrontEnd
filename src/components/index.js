@@ -10,6 +10,7 @@ import OptionsActivities from './OptionsActivities';
 import MenuParticipant from './MenuParticipant';
 import InputWithMask from './InputWithMask';
 import Select from './Select';
+import Card from './Card';
 
 export {
     Button, 
@@ -24,4 +25,5 @@ export {
     MenuParticipant,
     InputWithMask,
     Select,
+    Card
 }

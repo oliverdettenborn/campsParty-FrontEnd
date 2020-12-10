@@ -8,13 +8,14 @@ export default function OptionsActivities({list}) {
   return (
     <Container>
       {
-        list.map(item => {
+        list.map((item,i) => {
           return (
             <Card
               width='120px'
               height='120px'
               background='rgba(52, 209, 191, 0.9);'
               color='#EFEFEF'
+              key={i}
             >
               <HiOutlineLightBulb />
               {item}

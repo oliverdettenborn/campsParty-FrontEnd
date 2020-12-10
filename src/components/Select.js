@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function Select(props) {
   return (
     <BoxSelect name={props.name} id={props.id} value={props.value} onChange={props.onChange} required>
-      <option value="0">{props.placeholder}</option>
+      <option value="0" className="label">{props.placeholder}</option>
       {props.children}
     </BoxSelect>
   )
@@ -27,7 +27,6 @@ const BoxSelect = styled.select`
   -moz-appearance: none; 
   appearance: none; 
   cursor: pointer;
-
   :after {
     position: absolute;
     content: "";
