@@ -59,9 +59,9 @@ export default function FormUser() {
         headers: {"Authorization": `Bearer ${user.token}`}
       })
       .then(response => {
-        setUser(response.data.user);
-        setFormData(response.data.subscription);
         history.push('/participante');
+        setUser({...user, completeRegistration: response.data.user.completeRegistration});
+        setFormData(response.data.subscription);
       })
       .catch(err => {
         if (err.response.status === 422) { 

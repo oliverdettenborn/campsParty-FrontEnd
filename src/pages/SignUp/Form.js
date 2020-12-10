@@ -84,6 +84,10 @@ const Container = styled.form`
   align-self: center;
   margin: 30px 0px 20px 0px;
 
+  input{
+    width: 100%;
+  }
+
   @media (max-width: 600px) {
       width: 100%;
       margin-top: 30px;
