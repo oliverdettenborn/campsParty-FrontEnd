@@ -11,8 +11,9 @@ export default function SignIn(props) {
 }
 
 const Main = styled.main`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     ${media}{
         flex-direction: column-reverse;

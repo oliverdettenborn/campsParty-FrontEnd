@@ -68,6 +68,32 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Chelsea Market', sans-serif;
     background: rgba(7, 7, 7, 0.7);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  button{
+    cursor: pointer;
+  }
+  
+  button {
+	box-shadow: 0px 0px 0px transparent;
+	border: 0px solid transparent;
+	text-shadow: 0px 0px 0px transparent;
+	cursor: pointer;
+  }
+  
+  button:hover {
+	box-shadow: 0px 0px 0px transparent;
+	border: 0px solid transparent;
+	text-shadow: 0px 0px 0px transparent;
+  }
+  
+  button:active {
+	outline: none;
+	border: none;
+  }
+  
+  button:focus {
+	outline: 0;
   }
 `
 
