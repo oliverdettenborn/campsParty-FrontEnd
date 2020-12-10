@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Input, Error, Button, InputWithMask } from '../../components/';
+import { Input, Error, Button, InputWithMask, Select } from '../../components/';
 
 export default function Form(props) {
   const { 
@@ -14,7 +14,9 @@ export default function Form(props) {
     passwordConfirmation,
     setPasswordConfirmation,
     error,
-    disabledButton
+    disabledButton,
+    ticketType,
+    setTicketType
   } = props;
 
   return (
@@ -44,6 +46,17 @@ export default function Form(props) {
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
+        <Select 
+          name='ticketType' 
+          id='ticketType' 
+          placeholder='Escolha o tipo de ingresso'
+          value={ticketType}
+          onChange={(e) => (e.target.value !== "0") && setTicketType(e.target.value)}
+        >
+          <option value="none">Sem Acomodação</option>
+          <option value="tent">Alojamento (barracas)</option>
+          <option value="hotel">Hotel Parceiro</option>
+        </Select>
         {error && <Error>{error}</Error>}                    
         <Button
             width='80%'

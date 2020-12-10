@@ -37,7 +37,7 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
           <Title> Olá, participante! </Title>
           <LineWhite />
           {
-            (!user.completeRegistration === true) &&
+            (user.completeRegistration === true) &&
             <Menu>
               <Link to='/participante/visualizar-inscricao'>
                 <FaEye />
