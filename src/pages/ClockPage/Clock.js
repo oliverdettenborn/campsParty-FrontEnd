@@ -24,7 +24,7 @@ export default function Clock() {
 
 const Container = styled.article `
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -43,4 +43,5 @@ const Container = styled.article `
 
 const Time = styled.div `
     margin: 10px;
+    height: 50px;
 `;
