@@ -19,7 +19,7 @@ export default function Form(props) {
 
   return (
     <Container onSubmit={handleSignUp}>
-        <Input
+        <InputWithMask
             type='text'
             placeholder='Cpf'
             value={cpf}

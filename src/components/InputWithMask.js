@@ -1,5 +1,4 @@
 import React from 'react';
-import Input from './Input';
 import InputMask from 'react-input-mask';
 
 export default function InputWithMask(props) {
@@ -10,9 +9,22 @@ export default function InputWithMask(props) {
         placeholder={props.placeholder}
         type='text'
         mask={props.mask}
+        style={styledInput}
         required
-      >
-        {(inputProps) => <Input {...inputProps} type="text" disableUnderline />}
-      </InputMask>
+      />
   )
+};
+const styledInput = {
+  background: "#EFEFEF",
+  borderRadius: "15px",
+  width: "100%",
+  height: "60px",
+  marginBottom: "15px",
+  fontFamily: "'Chelsea Market', cursive",
+  fontSize: "22px",
+  lineHeight: "28px",
+  color: "#070707",
+  border: "none",
+  paddingLeft: "15px",
+  outline: "none",
 };

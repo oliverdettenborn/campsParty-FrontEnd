@@ -31,13 +31,13 @@ export default function SignIn() {
         request.catch(err => {
             console.log(err);
             setError(err);
-            /*if (err.response.status === 422) { 
+            if (err.response.status === 422) { 
                 setError('Preencha corretamente os campos');
             } else if (err.response.status === 409) {
                 setError('Cpf ou email já cadastrado');
             } else {
                 setError('Houve um erro ao cadastrar');
-            }*/
+            }
             setDisabledButton(false);
         });
     }
