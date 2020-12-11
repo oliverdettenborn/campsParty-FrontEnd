@@ -25,11 +25,11 @@ function App() {
             <Route path='/' exact component={ClockPage} />
             <Route path='/pre-inscricao' component={SignUp} />
             <Route path='/login' component={SignIn} />
-            <Route path='/participante' component={ParticipantPage} />
             <Route path='/participante/dados' component={FormUser} />
             <Route path='/participante/hospedagem' component={AccomodationChoosing} />
             <Route path='/participante/atividades' component={ActivitiesChoosing} />
             <Route path='/participante/visualizar-inscricao' component={ViewSubscription} />
+            <Route path='/participante' component={ParticipantPage} />
           </Switch>
         </BrowserRouter>
       </FormProvider>

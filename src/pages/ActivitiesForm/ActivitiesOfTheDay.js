@@ -25,7 +25,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
         }
 
         axios
-            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`, null, headers) // colocar headers
+            .get(`http://localhost:4000/event/activities/${day}`)
             .then(r => {
                 setAvailableActivities(r.data);
                 setLoading(false);
@@ -34,7 +34,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 console.log(err);
                 setLoading(false);
             });
-    }, [day]);
+    }, []);
 
     switch(day) {
         case 'friday':

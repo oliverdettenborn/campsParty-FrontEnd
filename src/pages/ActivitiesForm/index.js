@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import axios from 'axios';
+
+import FormContext from '../../context/FormContext';
 import ActivitiesOfTheDay from './ActivitiesOfTheDay';
 
 export default function ActivitiesChoosing() {
-  let [choicesCounter, setChoicesCounter] = useState(0);
   const days = ['friday', 'saturday', 'sunday'];
+  const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);
+
+  const sendChosenActivities = () => {
+    axios
+      .post('http://localhost:4000/event/activities', chosenActivities) // colocar token
+      .catch(err => console.log(err))
+  }
 
   return (
     <>
@@ -14,18 +23,18 @@ export default function ActivitiesChoosing() {
           <Message>Chegou a hora de escolher suas atividades!</Message>
         </LeftColumn>
   
-        <MainContent userHasFinished={choicesCounter === 9}>
+        <MainContent userHasFinished={chosenActivitiesCounter === 9}>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
                 key={i}
                 day={d}
-                countOneChoice={() => { choicesCounter < 9 && setChoicesCounter(choicesCounter + 1) }}
+                countOneChoice={() => { chosenActivitiesCounter < 9 && setChosenActivitiesCounter(chosenActivitiesCounter + 1) }}
               />
             ))
           }
 
-          <Link to='/'>Concluir</Link>
+          <Link to='/participante' onClick={sendChosenActivities}>Concluir</Link>
         </MainContent>
       </Container>
     </>
