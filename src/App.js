@@ -16,21 +16,20 @@ import {
 } from './pages';
 
 function App() {
-
   return (
       <UserProvider>
         <FormProvider>
           <BrowserRouter>
             <GlobalStyle />
             <Switch>
-                    <Route path='/' component={SignUp} />
-                    <Route path='/login' component={SignIn} />
-                    <Route path='/participante' exact component={ParticipantPage} />
-                    <Route path='/participante/dados' exact component={FormUser} />
-                    <Route path='/participante/hospedagem' exact component={AccomodationChoosing} />
-                    <Route path='/participante/hospedagem/editar' exact component={AccomodationEdit} />
-                    <Route path='/participante/atividades' exact component={ActivitiesChoosing} />
-                    <Route path='/participante/visualizar-inscricao' exact component={ViewSubscription} />
+              <Route path='/' component={SignUp} />
+              <Route path='/login' component={SignIn} />
+              <Route path='/participante' exact component={ParticipantPage} />
+              <Route path='/participante/dados' exact component={FormUser} />
+              <Route path='/participante/hospedagem' exact component={AccomodationChoosing} />
+              <Route path='/participante/hospedagem/editar' exact component={AccomodationEdit} />
+              <Route path='/participante/atividades' exact component={ActivitiesChoosing} />
+              <Route path='/participante/visualizar-inscricao' exact component={ViewSubscription} />
             </Switch>
           </BrowserRouter>
         </FormProvider>
