@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Input, Error, Button, InputWithMask } from '../../components/';
+import { Input, Error, Button, InputWithMask, Select } from '../../components/';
+import FormContext from '../../context/FormContext';
 
 export default function Form(props) {
+  const { hotelsList, notHotelList, loading } = useContext(FormContext);
   const { 
     handleSignUp,
     cpf,
@@ -14,8 +16,14 @@ export default function Form(props) {
     passwordConfirmation,
     setPasswordConfirmation,
     error,
-    disabledButton
+    disabledButton,
+    ticketType,
+    setTicketType
   } = props;
+
+  if(loading || hotelsList.length === 0){
+    return <h2>Carregando...</h2>
+  }
 
   return (
     <Container onSubmit={handleSignUp}>
@@ -44,14 +52,26 @@ export default function Form(props) {
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
+        <Select 
+          name='ticketType' 
+          id='ticketType' 
+          placeholder='Escolha o tipo de ingresso'
+          value={ticketType}
+          onChange={(e) => (e.target.value !== "0") && setTicketType(e.target.value)}
+        >
+          {
+            notHotelList.map(item => <option value={item.type}>{item.name} - Preço: {item.price}</option>)
+          }
+          <option value='hotel'>Hotel Parceiro - Preço: {hotelsList[0].price}</option>
+        </Select>
         {error && <Error>{error}</Error>}                    
         <Button
-            width='80%'
-            height='50px'
-            type='submit'
-            disabledButton={disabledButton}
+          width='80%'
+          height='50px'
+          type='submit'
+          disabledButton={disabledButton}
         >
-            Quero Participar
+          Quero Participar
         </Button>
         
     </Container>
@@ -63,13 +83,17 @@ const Container = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 70%;
+  width: 75%;
   height: 500px;
   background: #34d1bf;
   border-radius: 15px;
   padding: 30px 60px;
   align-self: center;
   margin: 30px 0px 20px 0px;
+
+  input{
+    width: 100%;
+  }
 
   @media (max-width: 600px) {
       width: 100%;

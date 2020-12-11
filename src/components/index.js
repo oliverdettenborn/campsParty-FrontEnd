@@ -9,7 +9,8 @@ import PageTwoColumn from './PageTwoColumn';
 import OptionsActivities from './OptionsActivities';
 import MenuParticipant from './MenuParticipant';
 import InputWithMask from './InputWithMask';
-
+import Select from './Select';
+import Card from './Card';
 
 export {
     Button, 
@@ -23,4 +24,6 @@ export {
     OptionsActivities,
     MenuParticipant,
     InputWithMask,
+    Select,
+    Card
 }

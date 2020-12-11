@@ -32,7 +32,6 @@ export default function SignIn() {
             setDisabledButton(false);
             history.push('/participante');
         });
-
         request.catch(err => {
             setError(err.message);
             setDisabledButton(false);

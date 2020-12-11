@@ -37,7 +37,7 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
           <Title> Olá, participante! </Title>
           <LineWhite />
           {
-            (!user.completeRegistration === true) &&
+            (user.completeRegistration === true) &&
             <Menu>
               <Link to='/participante/visualizar-inscricao'>
                 <FaEye />
@@ -47,7 +47,7 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
                 <BiPencil />
                 Meus dados
               </Link>
-              <Link to='/participante/hospedagem'>
+              <Link to='/participante/hospedagem/editar'>
                 <BiPencil />
                 Acomodação
               </Link>
@@ -57,12 +57,12 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
               </Link>
             </Menu>
           }
+          <Logout onClick={handleLogout}>
+          <IoIosExit />
+            Sair
+          </Logout>
         </Container>
       </BlueBox>
-      <Logout onClick={handleLogout}>
-        <IoIosExit />
-        Sair
-      </Logout>
     </>
   );
 }

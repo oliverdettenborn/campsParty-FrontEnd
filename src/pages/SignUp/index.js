@@ -13,6 +13,7 @@ export default function SignIn() {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ passwordConfirmation, setPasswordConfirmation ] = useState("");
+    const [ ticketType, setTicketType ] = useState("");
     const [ error, setError ] = useState(null);
     const [ disabledButton , setDisabledButton ] = useState(false);
     const history = useHistory();
@@ -26,7 +27,17 @@ export default function SignIn() {
         if (disabledButton) return;
         setDisabledButton(true);
 
-        const data = {email, cpf, password, passwordConfirmation};
+        if(ticketType === ""){
+            setDisabledButton(false);
+            setError("Você precisa escolher o tipo do ingresso!");
+            return;
+        }
+        if(password !== passwordConfirmation){
+            setDisabledButton(false);
+            setError("Senha e confirmação de senha não são iguais");
+            return;
+        }
+        const data = {email, cpf, password, passwordConfirmation, ticketType};
         const request = axios.post(`${process.env.REACT_APP_API_URL}/api/users/sign-up`, data);
 
         request.then(response => {
@@ -63,6 +74,8 @@ export default function SignIn() {
                     setPassword={setPassword}
                     passwordConfirmation={passwordConfirmation}
                     setPasswordConfirmation={setPasswordConfirmation}
+                    ticketType={ticketType}
+                    setTicketType={setTicketType}
                     error={error}
                     disabledButton={disabledButton}
                 />

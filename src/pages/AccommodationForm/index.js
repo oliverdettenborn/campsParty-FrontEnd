@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
+import FormContext from "../../context/FormContext";
 
 import { Container } from "./AccommodationFormStyle";
+import { PageTwoColumn, RightBlackBox, MenuParticipant } from '../../components';
 import HotelItem from './HotelItem';
 
 export default function AccomodationChoosing() {
-    const [hotelsList, serHotelsList] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/partners/hotels`) // colocar headers de autorização
-            .then(r => {
-                serHotelsList(r.data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err.response);
-            });
-    }, []);
+    const { loading, hotelsList} = useContext(FormContext);
+    const [ togleMenu, setTogleMenu ] = useState(false);
 
     return (
-        <Container>
-            <div>
-                <h2>Onde você gostaria de se hospedar?</h2>
-            </div>
+        <PageTwoColumn>
+            <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu}/>
+            <RightBlackBox onClick={() => setTogleMenu(false)}>
+            <Container>
+                <div>
+                    <h2>Onde você gostaria de se hospedar?</h2>
+                </div>
 
-            <ul>
-                {loading ? 'Carregando...' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
-            </ul>
-        </Container>
+                <ul>
+                    {loading ? 'Carregando...' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
+                </ul>
+            </Container>
+            </RightBlackBox>
+        </PageTwoColumn>
     );
 }
