@@ -9,10 +9,6 @@ export default function ActivitiesChoosing() {
   const days = ['friday', 'saturday', 'sunday'];
   const [ togleMenu, setTogleMenu ] = useState(false);
 
-  function submitActivities(){
-
-  }
-
   return (
     <PageTwoColumn>
       <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu} />
@@ -29,7 +25,7 @@ export default function ActivitiesChoosing() {
             ))
           }
 
-          <Button onClick={submitActivities} width='35%' height='60px'>
+          <Button width='35%' height='60px'>
             Concluir
           </Button>
         </MainContent>

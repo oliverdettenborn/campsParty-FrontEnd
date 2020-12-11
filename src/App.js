@@ -27,7 +27,7 @@ function App() {
             <GlobalStyle />
             <Switch>
             {
-              !finish 
+              finish 
                 ? (
                     <>
                     <Route path='/' exact component={ClockPage} />
