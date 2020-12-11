@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
@@ -7,21 +6,19 @@ import axios from 'axios';
 import FormContext from '../../context/FormContext';
 import UserContext from '../../context/UserContext';
 import ActivitiesOfTheDay from './ActivitiesOfTheDay';
-import { PageTwoColumn, RightBlackBox, Button, MenuParticipant, Error } from '../../components';
+import { PageTwoColumn, RightBlackBox, MenuParticipant, Error, Button } from '../../components';
 import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
   const [ togleMenu, setTogleMenu ] = useState(false);
   const days = ['friday', 'saturday', 'sunday'];
-  const { chosenActivities } = useContext(FormContext);
+  const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);
+  const { user, setUser } = useContext(UserContext);
+  const history = useHistory();
+  const [ disabledButton, setDisabledButton ] = useState(true);
+  const [ error, setError ] = useState("");
 
-  const sendChosenActivities = () => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/api/event/users/activities`, chosenActivities) // colocar token
-      .catch(err => console.log(err))
-  }
-
-  const countChosenActivities = () => {
+  function countChosenActivities(){
     const momentsOfTheDay = ['morning', 'afternoon', 'night'];
     let counter = 0;
 
@@ -35,16 +32,9 @@ export default function ActivitiesChoosing() {
     }
 
     return counter;
-  let [choicesCounter] = useState(0);
-  const days = ['friday', 'saturday', 'sunday'];
-  const [ togleMenu, setTogleMenu ] = useState(false);
-  const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);
-  const { user, setUser } = useContext(UserContext);
-  const history = useHistory();
-  const [ disabledButton, setDisabledButton ] = useState("");
-  const [ error, setError ] = useState("");
+  }
 
-  const sendChosenActivities = () => {
+  function sendChosenActivities(){
     if(disabledButton) return;
     setDisabledButton(true);
 
@@ -95,26 +85,13 @@ export default function ActivitiesChoosing() {
               />
             ))
           }
-
-
-          <Link to='/participante' onClick={sendChosenActivities}>Concluir</Link>
+          <Button disabledButton={disabledButton} onClick={sendChosenActivities}>Concluir</Button>
           {error && <Error>{error}</Error>}
         </MainContent>
       </RightBlackBox>
     </PageTwoColumn>
   )
 }
-
-const Message = styled.span`
-  font-family: 'Chelsea Market', cursive;
-  font-size: 28px;
-  line-height: 40px;
-  color: white;
-  text-align: center;
-  border-bottom: 1px solid #EFEFEF;
-  width:74%;
-  padding-bottom: 15px;
-`;
 
 const MainContent = styled.div`
   display: flex;

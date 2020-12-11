@@ -18,14 +18,8 @@ export default function ActivitiesOfTheDay({ day }) {
     Modal.setAppElement('#root');
 
     useEffect(() => {
-        const headers = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-
         axios
-            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`,
+            .get(`${process.env.REACT_APP_API_URL}/api/event/activities/${day}`,
                 { headers: {"Authorization": `Bearer ${user.token}`}})
             .then(r => {
                 setAvailableActivities(r.data);
@@ -59,9 +53,7 @@ export default function ActivitiesOfTheDay({ day }) {
     };
 
     const chooseActivity = (activityDescription, hourOfTheDay, isConnectedActivity) => {
-        const connectedActivities = availableActivities.map(a => {
-            if (a.isConnected) return a.description;
-        });
+        const connectedActivities = availableActivities.map(a =>  (a.isConnected) && a.description);
     
         if (isConnectedActivity) {
             chosenActivities[day].morning = activityDescription;
