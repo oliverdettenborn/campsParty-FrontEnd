@@ -12,10 +12,6 @@ export function FormProvider(props) {
   const [hotelsList, setHotelsList] = useState([]);
   const [notHotelList, setNotHotelList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [chosenHotel, setChosenHotel] = useState({
-    name: '',
-    price: ''
-  });
 
   const [chosenActivities, setChosenActivities] = useState(
     {
@@ -55,11 +51,17 @@ export function FormProvider(props) {
       .catch(err => {
         console.log(err.response);
       });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/user/subscription`, { headers: {"Authorization": `Bearer ${user.token}`}})
+      .then(response => {
+        setFormData(response.data);
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
   }, [user.token]);
 
   const value = {
-    chosenHotel,
-    setChosenHotel,
     chosenActivities,
     setChosenActivities,
     formData, 

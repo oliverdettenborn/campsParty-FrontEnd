@@ -66,8 +66,10 @@ export default function FormUser() {
       .catch(err => {
         if (err.response.status === 422) { 
           setError('Preencha corretamente os campos');
-        } else if (err.response.status === 409) {
-          setError('Cpf ou email já cadastrado');
+        } else if (err.response.status === 401) {
+          setError('Usuário não logado');
+          setUser({});
+          history.push('/login');
         } else {
           setError('Houve um erro ao cadastrar');
         }

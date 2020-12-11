@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
+import styled from 'styled-components';
 import FormContext from "../../context/FormContext";
 
-import { Container } from "./AccommodationFormStyle";
-import { PageTwoColumn, RightBlackBox, MenuParticipant } from '../../components';
-import HotelItem from './HotelItem';
+import { PageTwoColumn, RightBlackBox, MenuParticipant, HotelItem } from '../../components';
 
 export default function AccomodationChoosing() {
     const { loading, hotelsList} = useContext(FormContext);
@@ -26,3 +25,27 @@ export default function AccomodationChoosing() {
         </PageTwoColumn>
     );
 }
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-family: 'Chelsea Market', cursive;
+    color: #EFEFEF;
+    padding: 30px;
+
+    & > div {
+        border-bottom: 1px solid white;
+        padding-bottom: 15px;
+        width: 100%;
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+
+    ul {
+        flex-grow: 1;
+        text-align: center;
+    }
+    h2{
+        text-align: center;
+    }
+`;

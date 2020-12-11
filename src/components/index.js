@@ -11,6 +11,7 @@ import MenuParticipant from './MenuParticipant';
 import InputWithMask from './InputWithMask';
 import Select from './Select';
 import Card from './Card';
+import HotelItem from './HotelItem';
 
 export {
     Button, 
@@ -25,5 +26,6 @@ export {
     MenuParticipant,
     InputWithMask,
     Select,
-    Card
+    Card,
+    HotelItem
 }

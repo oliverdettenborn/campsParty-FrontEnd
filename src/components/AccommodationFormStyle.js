@@ -1,29 +1,5 @@
 import styled from 'styled-components';
-import { media } from '../../assets/query';
-
-export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    font-family: 'Chelsea Market', cursive;
-    color: #EFEFEF;
-    padding: 30px;
-
-    & > div {
-        border-bottom: 1px solid white;
-        padding-bottom: 15px;
-        width: 100%;
-        font-size: 32px;
-        margin-bottom: 35px;
-    }
-
-    ul {
-        flex-grow: 1;
-        text-align: center;
-    }
-    h2{
-        text-align: center;
-    }
-`;
+import { media } from '../assets/query';
 
 export const Item = styled.li`
     background-image: ${({ backgroundImg }) => `url('${backgroundImg}')`};
