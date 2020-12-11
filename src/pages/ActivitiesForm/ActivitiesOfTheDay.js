@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
 import UserContext from '../../context/UserContext';
-import { Container, Date, MomentsContainer, modalStyle, ModalContainer } from './ActivitiesFormStyle';
+import { Container, Date, MomentsContainer, modalStyle, ModalContainer, ActivityBox } from './ActivitiesFormStyle';
 
-export default function ActivitiesOfTheDay({ day, countOneChoice }) {
+export default function ActivitiesOfTheDay({ day, changeChosenActivitiesCounter }) {
     const [availableActivities, setAvailableActivities] = useState([]);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
         }
 
         axios
-            .get(`http://localhost:4000/event/activities/${day}`)
+            .get(`${process.env.REACT_APP_API_URL}/api/event/activities/${day}`)
             .then(r => {
                 setAvailableActivities(r.data);
                 setLoading(false);
@@ -34,7 +34,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 console.log(err);
                 setLoading(false);
             });
-    }, []);
+    }, [day]);
 
     switch(day) {
         case 'friday':
@@ -57,10 +57,40 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
         setIsModalOpen(true);
     };
 
-    const chooseActivity = (activityDescription, hourOfTheDay) => {
-        chosenActivities[day][hourOfTheDay] = activityDescription;
+    const chooseActivity = (activityDescription, hourOfTheDay, isConnectedActivity) => {
+        const hadNotBeenChosen = !chosenActivities[day][hourOfTheDay];
+        
+        // counts one more choice only if the user has not chosen
+        // some activity for that day and moment yet
 
-        countOneChoice();
+        const connectedActivities = availableActivities.map(a => {
+            if (a.isConnected) return a.description;
+        });
+        
+        // if (!chosenActivities[day][hourOfTheDay]) {
+            if (isConnectedActivity) {
+                chosenActivities[day].morning = activityDescription;
+                chosenActivities[day].afternoon = activityDescription;
+                chosenActivities[day].night = activityDescription;
+                
+                if (hadNotBeenChosen) changeChosenActivitiesCounter('+', 3);
+            }
+            else {
+                if (connectedActivities.includes(chosenActivities[day][hourOfTheDay])) {
+                    chosenActivities[day].morning = '';
+                    chosenActivities[day].afternoon = '';
+                    chosenActivities[day].night = '';
+
+                    changeChosenActivitiesCounter('-', 2);
+                }
+
+                chosenActivities[day][hourOfTheDay] = activityDescription;
+                if (hadNotBeenChosen) changeChosenActivitiesCounter('+', 1);
+            }
+        // }
+        // else {
+            // chosenActivities[day][hourOfTheDay] = activityDescription;
+        // }
 
         setChosenActivities({...chosenActivities});
         setIsModalOpen(false);
@@ -108,17 +138,25 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 <Modal style={modalStyle} isOpen={isModalOpen}>
                     <ModalContainer>
                         {
-                            chosenMomentEvents.map(m => {
+                            chosenMomentEvents.map(e => {
                                 return (
-                                    <div
-                                        key={m.id}
-                                        onClick={() => chooseActivity(m.description, m.hourOfTheDay.toLowerCase())}
-                                    >
-                                        {m.description}
-                                    </div>
+                                    <>
+                                        <ActivityBox
+                                            isConnected={e.isConnected}
+                                            key={e.id}
+                                            onClick={() => chooseActivity(e.description, e.hourOfTheDay.toLowerCase(), e.isConnected)}
+                                        >
+                                            {e.description}
+                                        </ActivityBox>
+                                    </>
                                 );
                             })
                         }
+                        <span>
+                            Atividades destacadas em branco duram todo o dia. Logo
+                            todos os campos "Manhã", "Tarde" e "Noite" serão 
+                            preenchidos automaticamente caso sejam escolhidas.
+                        </span>
                     </ModalContainer>
                 </Modal>
             </MomentsContainer>

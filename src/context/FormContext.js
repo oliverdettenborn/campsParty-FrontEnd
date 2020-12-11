@@ -12,7 +12,6 @@ export function FormProvider(props) {
   });
 
   const [chosenActivitiesCounter, setChosenActivitiesCounter] = useState(0);
-
   const [chosenActivities, setChosenActivities] = useState(
     {
       friday: {

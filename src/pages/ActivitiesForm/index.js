@@ -12,8 +12,17 @@ export default function ActivitiesChoosing() {
 
   const sendChosenActivities = () => {
     axios
-      .post('http://localhost:4000/event/activities', chosenActivities) // colocar token
+      .post(`${process.env.REACT_APP_API_URL}/api/event/users/activities`, chosenActivities) // colocar token
       .catch(err => console.log(err))
+  }
+
+  const changeChosenActivitiesCounter = (operation, number) => {
+    if (operation === '+') {
+      setChosenActivitiesCounter(chosenActivitiesCounter + number);
+    }
+    else {
+      setChosenActivitiesCounter(chosenActivitiesCounter - number);
+    }
   }
 
   return (
@@ -29,7 +38,7 @@ export default function ActivitiesChoosing() {
               <ActivitiesOfTheDay
                 key={i}
                 day={d}
-                countOneChoice={() => { chosenActivitiesCounter < 9 && setChosenActivitiesCounter(chosenActivitiesCounter + 1) }}
+                changeChosenActivitiesCounter={changeChosenActivitiesCounter}
               />
             ))
           }

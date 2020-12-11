@@ -18,7 +18,7 @@ export default function AccomodationChoosing() {
         }
 
         axios
-            .get(`http://localhost:4000/partners/hotels`) // colocar headers de autorização
+            .get(`${process.env.REACT_APP_API_URL}/api/partners/hotels`)
             .then(r => {
                 serHotelsList(r.data);
                 setLoading(false);
