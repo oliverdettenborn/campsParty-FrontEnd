@@ -26,13 +26,15 @@ export default function ParticipantPage() {
         </Description>
         <OptionsActivities list={["Gaming", "Hacking", "Makers", "Startups"]}/>
         {
-          (user.completeRegistration === true)
+          (user.completeRegistration === true && user.choosedActivities === true)
           ? (<Text>Parabéns, sua inscrição foi completada com sucesso!</Text>)
           : (<Button
-                onClick={() => history.push('/participante/dados')}
+                onClick={() => (user.completeRegistration === true) ? history.push('/participante/atividades') : history.push('/participante/dados')}
                 width='315px'
                 height='60px'
-              >Completar inscrição!</Button>)
+              >
+                {user.completeRegistration === true ? 'Escolher as atividades!' : 'Completar a inscrição!'}
+              </Button>)
         }
         
       </RightBlackBox>
