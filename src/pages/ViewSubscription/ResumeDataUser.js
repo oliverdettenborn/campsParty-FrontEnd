@@ -22,7 +22,7 @@ export default function ResumeDataUser() {
       <Line label='Tipo do ingresso' value={`${(user.ticketType === 'hotel') ? 'Hotel Parceiro' : (user.ticketType === 'tent' ? 'Alojamento' : 'Sem alojamento')}`} />
       <Line label='Valor do ingresso' value={`${formData.admissionCost}`} />
       {(user.ticketType === 'hotel') &&
-        <Line label='Hotel' value={`${hotelsList.find(h => h.id === formData.accommodationId).name}`} />
+        <Line label='Hotel' value={`${hotelsList.find(h => h.id === formData.accommodationId).name || ""}`} />
       }
     </Card>
   )
