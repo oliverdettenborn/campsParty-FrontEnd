@@ -6,7 +6,7 @@ import FormContext from '../../context/FormContext';
 import UserContext from '../../context/UserContext';
 import { Container, Date, MomentsContainer, modalStyle, ModalContainer, ActivityBox } from './ActivitiesFormStyle';
 
-export default function ActivitiesOfTheDay({ day, changeChosenActivitiesCounter }) {
+export default function ActivitiesOfTheDay({ day }) {
     const [availableActivities, setAvailableActivities] = useState([]);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,39 +58,24 @@ export default function ActivitiesOfTheDay({ day, changeChosenActivitiesCounter 
     };
 
     const chooseActivity = (activityDescription, hourOfTheDay, isConnectedActivity) => {
-        const hadNotBeenChosen = !chosenActivities[day][hourOfTheDay];
-        
-        // counts one more choice only if the user has not chosen
-        // some activity for that day and moment yet
-
         const connectedActivities = availableActivities.map(a => {
             if (a.isConnected) return a.description;
         });
-        
-        // if (!chosenActivities[day][hourOfTheDay]) {
-            if (isConnectedActivity) {
-                chosenActivities[day].morning = activityDescription;
-                chosenActivities[day].afternoon = activityDescription;
-                chosenActivities[day].night = activityDescription;
-                
-                if (hadNotBeenChosen) changeChosenActivitiesCounter('+', 3);
+    
+        if (isConnectedActivity) {
+            chosenActivities[day].morning = activityDescription;
+            chosenActivities[day].afternoon = activityDescription;
+            chosenActivities[day].night = activityDescription;
+        }
+        else {
+            if (connectedActivities.includes(chosenActivities[day][hourOfTheDay])) {
+                chosenActivities[day].morning = '';
+                chosenActivities[day].afternoon = '';
+                chosenActivities[day].night = '';
             }
-            else {
-                if (connectedActivities.includes(chosenActivities[day][hourOfTheDay])) {
-                    chosenActivities[day].morning = '';
-                    chosenActivities[day].afternoon = '';
-                    chosenActivities[day].night = '';
 
-                    changeChosenActivitiesCounter('-', 2);
-                }
-
-                chosenActivities[day][hourOfTheDay] = activityDescription;
-                if (hadNotBeenChosen) changeChosenActivitiesCounter('+', 1);
-            }
-        // }
-        // else {
-            // chosenActivities[day][hourOfTheDay] = activityDescription;
-        // }
+            chosenActivities[day][hourOfTheDay] = activityDescription;
+        }
 
         setChosenActivities({...chosenActivities});
         setIsModalOpen(false);
@@ -153,7 +138,7 @@ export default function ActivitiesOfTheDay({ day, changeChosenActivitiesCounter 
                             })
                         }
                         <span>
-                            Atividades destacadas em branco duram todo o dia. Logo
+                            Atividades destacadas em amarelo duram todo o dia. Logo
                             todos os campos "Manhã", "Tarde" e "Noite" serão 
                             preenchidos automaticamente caso sejam escolhidas.
                         </span>

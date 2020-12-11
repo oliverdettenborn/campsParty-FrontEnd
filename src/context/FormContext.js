@@ -11,7 +11,6 @@ export function FormProvider(props) {
     price: ''
   });
 
-  const [chosenActivitiesCounter, setChosenActivitiesCounter] = useState(0);
   const [chosenActivities, setChosenActivities] = useState(
     {
       friday: {
@@ -38,9 +37,7 @@ export function FormProvider(props) {
     chosenActivities,
     setChosenActivities,
     formData, 
-    setFormData,
-    chosenActivitiesCounter,
-    setChosenActivitiesCounter
+    setFormData
   };
   return (
     <FormContext.Provider value={value}>

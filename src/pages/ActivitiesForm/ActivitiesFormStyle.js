@@ -90,7 +90,7 @@ export const ModalContainer = styled.div`
 
 export const ActivityBox = styled.div`
     padding: 10px 15px;
-    background: ${({ isConnected }) => isConnected ? '#EFEFEF' : '#34D1BF'};
+    background: ${({ isConnected }) => isConnected ? 'yellow' : '#34D1BF'};
     font-family: 'Chelsea Market', cursive;
     margin-bottom: 14px;
     border-radius: 5px;

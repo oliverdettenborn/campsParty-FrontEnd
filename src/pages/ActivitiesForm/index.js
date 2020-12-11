@@ -8,7 +8,7 @@ import ActivitiesOfTheDay from './ActivitiesOfTheDay';
 
 export default function ActivitiesChoosing() {
   const days = ['friday', 'saturday', 'sunday'];
-  const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);
+  const { chosenActivities } = useContext(FormContext);
 
   const sendChosenActivities = () => {
     axios
@@ -16,13 +16,20 @@ export default function ActivitiesChoosing() {
       .catch(err => console.log(err))
   }
 
-  const changeChosenActivitiesCounter = (operation, number) => {
-    if (operation === '+') {
-      setChosenActivitiesCounter(chosenActivitiesCounter + number);
+  const countChosenActivities = () => {
+    const momentsOfTheDay = ['morning', 'afternoon', 'night'];
+    let counter = 0;
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+          const weekDay = days[i];
+          const hourOfTheDay = momentsOfTheDay[j];
+
+          if (chosenActivities[weekDay][hourOfTheDay]) counter++;
+      }
     }
-    else {
-      setChosenActivitiesCounter(chosenActivitiesCounter - number);
-    }
+
+    return counter;
   }
 
   return (
@@ -32,13 +39,12 @@ export default function ActivitiesChoosing() {
           <Message>Chegou a hora de escolher suas atividades!</Message>
         </LeftColumn>
   
-        <MainContent userHasFinished={chosenActivitiesCounter === 9}>
+        <MainContent userHasFinished={countChosenActivities() === 9}>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
                 key={i}
                 day={d}
-                changeChosenActivitiesCounter={changeChosenActivitiesCounter}
               />
             ))
           }
