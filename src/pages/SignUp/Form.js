@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Input, Error, Button, InputWithMask, Select } from '../../components/';
+import FormContext from '../../context/FormContext';
 
 export default function Form(props) {
+  const { hotelList, notHotelList } = useContext(FormContext);
   const { 
     handleSignUp,
     cpf,
@@ -53,9 +55,10 @@ export default function Form(props) {
           value={ticketType}
           onChange={(e) => (e.target.value !== "0") && setTicketType(e.target.value)}
         >
-          <option value="none">Sem Acomodação</option>
-          <option value="tent">Alojamento (barracas)</option>
-          <option value="hotel">Hotel Parceiro</option>
+          {
+            notHotelList.map(item => <option value={item.type}>S{item.name} - Preço: {item.price}</option>)
+          }
+          <option value={hotelList[0].type}>Hotel Parceiro - Preço: {hotelList[0].price}</option>
         </Select>
         {error && <Error>{error}</Error>}                    
         <Button
