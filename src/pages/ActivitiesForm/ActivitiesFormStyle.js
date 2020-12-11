@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../assets/query';
 
 export const Container = styled.div`
     margin-bottom: 40px;
@@ -8,6 +9,7 @@ export const Container = styled.div`
 export const Date = styled.div`
     align-self: flex-start;
     width: 280px;
+    max-width: 100%;
     height: 50px;
     background: #D1345B;
     display: flex;
@@ -15,6 +17,13 @@ export const Date = styled.div`
     align-items: center;
     color: white;
     margin-bottom: 12px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    ${media}{
+        font-size: 14px;
+        width: 73%;
+    }
 `;
 
 export const MomentsContainer = styled.div`
@@ -22,6 +31,8 @@ export const MomentsContainer = styled.div`
         display: flex;
         width: 100%;
         margin-bottom: 8px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
 
         & > div:first-child {
             width: 120px;
@@ -31,6 +42,7 @@ export const MomentsContainer = styled.div`
             align-items: center;
             color: white;
             flex-shrink: 0;
+            border-radius: 15px 0 0 15px;
         }
 
         & > div:last-child {
@@ -41,6 +53,7 @@ export const MomentsContainer = styled.div`
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            border-radius: 0px 15px 15px 0px;
         }
     }
 
@@ -50,6 +63,15 @@ export const MomentsContainer = styled.div`
 
     & > div:nth-child(even) div:first-child {
         background: #34D1BF;
+    }
+
+    ${media}{
+        font-size: 14px;
+        & > div {
+            & > div:first-child {
+                width: 20%;
+            }
+        }
     }
 `;
 
@@ -68,7 +90,7 @@ export const modalStyle = {
         'display': 'flex',
         'justifyContent': 'center',
         'alignItems': 'center'
-    }
+    },
 }
 
 export const ModalContainer = styled.div`
@@ -90,5 +112,12 @@ export const ModalContainer = styled.div`
         border-radius: 5px;
         text-align: center;
         cursor: pointer;
+    }
+    ${media}{
+        width: 100vw;
+        padding: 5px;
+        div{
+            padding: 5px;
+        }
     }
 `;
