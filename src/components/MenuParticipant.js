@@ -57,12 +57,12 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
               </Link>
             </Menu>
           }
+          <Logout onClick={handleLogout}>
+          <IoIosExit />
+            Sair
+          </Logout>
         </Container>
       </BlueBox>
-      <Logout onClick={handleLogout}>
-        <IoIosExit />
-        Sair
-      </Logout>
     </>
   );
 }

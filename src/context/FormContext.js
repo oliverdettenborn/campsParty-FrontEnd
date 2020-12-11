@@ -39,7 +39,7 @@ export function FormProvider(props) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/partners/hotels`)
+      .get(`${process.env.REACT_APP_API_URL}/api/partners/hotels`)
       .then(r => {
         setHotelsList(r.data);
         setLoading(false);
@@ -48,7 +48,7 @@ export function FormProvider(props) {
         console.log(err.response);
       });
     axios
-      .get(`${process.env.REACT_APP_API_URL}/partners/not-hotels`)
+      .get(`${process.env.REACT_APP_API_URL}/api/partners/not-hotels`)
       .then(response => {
         setNotHotelList(response.data);
       })

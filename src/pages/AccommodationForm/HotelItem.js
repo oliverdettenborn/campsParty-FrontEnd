@@ -15,12 +15,16 @@ export default function HotelItem({ hotel }) {
 
     Modal.setAppElement('#root');
 
+    if(!formData.name){
+        history.push('/participante/dados')
+    }
+
     const processHotelChoice = () => {
         setChosenHotel({
             name: hotel.name,
             price: hotel.price
         });
-        setFormData({...formData, accommodationId: hotel.id, admissionCost: hotel.price})
+        setFormData({...formData, accommodationId: String(hotel.id), admissionCost: hotel.price})
         axios.post(
             `${process.env.REACT_APP_API_URL}/api/user/subscription`,
             formData,

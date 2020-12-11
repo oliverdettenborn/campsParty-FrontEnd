@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import { media } from '../../assets/query';
 
 export const Container = styled.div`
-    width: 100vw;
-    min-height: 100vh;
-    background-color: rgba(7, 7, 7, 0.75);
     display: flex;
     flex-direction: column;
     font-family: 'Chelsea Market', cursive;
@@ -20,6 +18,9 @@ export const Container = styled.div`
 
     ul {
         flex-grow: 1;
+        text-align: center;
+    }
+    h2{
         text-align: center;
     }
 `;
@@ -51,6 +52,12 @@ export const Item = styled.li`
         opacity: ${({ isMouseOver }) => isMouseOver ? 1 : 0};
         transition: all 200ms linear;
     }
+
+    ${media}{
+        div{
+            opacity: 1;
+        }
+    }
 `;
 
 /* Hotel data Modal styles */
@@ -60,7 +67,8 @@ export const modalStyle = {
         'height': '100vh',
         'display': 'flex',
         'justifyContent': 'center',
-        'alignItems': 'center'
+        'alignItems': 'center',
+        'zIndex': "11",
     },
     content: {
         'background': 'none',
@@ -107,6 +115,24 @@ export const ModalContainer = styled.div`
             }
         }
     }
+
+    ${media}{
+        width: 100vw;
+
+        & > div {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 5px;
+
+            & > div:first-child {
+                width: 100%;
+            }
+        }
+        img {
+        height: 200px;
+    }
+    }
 `;
 
 export const PriceAndButtons = styled.div`
@@ -136,5 +162,22 @@ export const PriceAndButtons = styled.div`
         color: white;
         width: 80px;
         padding: 10px;
+    }
+
+    ${media}{
+        display: flex;
+        margin-top: 15px;
+        margin-bottom: 25px;
+
+        div:first-child {
+            border-radius: 15px 0px 0 15px;
+        }
+        button:first-child {
+            border-top-right-radius: 15px;
+        }
+
+        button:last-child {
+            border-bottom-right-radius: 15px;
+        }
     }
 `;
