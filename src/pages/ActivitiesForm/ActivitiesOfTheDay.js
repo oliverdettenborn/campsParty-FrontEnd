@@ -3,10 +3,12 @@ import Modal from 'react-modal';
 import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
+import UserContext from '../../context/UserContext';
 import { Container, Date, MomentsContainer, modalStyle, ModalContainer } from './ActivitiesFormStyle';
 
 export default function ActivitiesOfTheDay({ day, countOneChoice }) {
     const [availableActivities, setAvailableActivities] = useState([]);
+    const { user } = useContext(UserContext);
     const { chosenActivities, setChosenActivities } = useContext(FormContext);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +19,8 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`) // colocar headers
+            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`,
+                { headers: {"Authorization": `Bearer ${user.token}`}})
             .then(r => {
                 setAvailableActivities(r.data);
                 setLoading(false);
@@ -26,7 +29,7 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 console.log(err);
                 setLoading(false);
             });
-    }, [day]);
+    }, [day, user.token]);
 
     switch(day) {
         case 'friday':
