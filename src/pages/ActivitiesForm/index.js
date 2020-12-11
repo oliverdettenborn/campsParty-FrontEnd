@@ -10,7 +10,7 @@ import { PageTwoColumn, RightBlackBox, Button, MenuParticipant, Error } from '..
 import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
-  let [choicesCounter, setChoicesCounter] = useState(0);
+  let [choicesCounter] = useState(0);
   const days = ['friday', 'saturday', 'sunday'];
   const [ togleMenu, setTogleMenu ] = useState(false);
   const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);

@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { UserProvider } from './context/UserContext';
 import { FormProvider } from './context/FormContext';
-import ClockContext from './context/ClockContext';
 import GlobalStyle from './assets/GlobalStyle';
 
 import {
   AccomodationChoosing,
   ActivitiesChoosing,
-  ClockPage,
   FormUser,
   ParticipantPage,
   SignIn,
@@ -18,7 +16,7 @@ import {
 } from './pages';
 
 function App() {
-  const {finish} = useContext(ClockContext);
+
 
   return (
       <UserProvider>
