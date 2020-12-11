@@ -4,7 +4,7 @@ import { Input, Error, Button, InputWithMask, Select } from '../../components/';
 import FormContext from '../../context/FormContext';
 
 export default function Form(props) {
-  const { hotelList, notHotelList } = useContext(FormContext);
+  const { hotelsList, notHotelList, loading } = useContext(FormContext);
   const { 
     handleSignUp,
     cpf,
@@ -20,6 +20,10 @@ export default function Form(props) {
     ticketType,
     setTicketType
   } = props;
+
+  if(loading || hotelsList.length === 0){
+    return <h2>Carregando...</h2>
+  }
 
   return (
     <Container onSubmit={handleSignUp}>
@@ -56,9 +60,9 @@ export default function Form(props) {
           onChange={(e) => (e.target.value !== "0") && setTicketType(e.target.value)}
         >
           {
-            notHotelList.map(item => <option value={item.type}>S{item.name} - Preço: {item.price}</option>)
+            notHotelList.map(item => <option value={item.type}>{item.name} - Preço: {item.price}</option>)
           }
-          <option value={hotelList[0].type}>Hotel Parceiro - Preço: {hotelList[0].price}</option>
+          <option value='hotel'>Hotel Parceiro - Preço: {hotelsList[0].price}</option>
         </Select>
         {error && <Error>{error}</Error>}                    
         <Button
