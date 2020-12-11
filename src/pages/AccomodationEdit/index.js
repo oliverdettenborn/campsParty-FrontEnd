@@ -1,16 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
-import FormContext from '../../context/FormContext';
 import { PageTwoColumn, RightBlackBox, MenuParticipant } from '../../components';
 
 export default function AccomodationEdit() {
   const history = useHistory();
-  const { user, setUser } = useContext(UserContext);
-  const { formData, setFormData } = useContext(FormContext);
+  const { user } = useContext(UserContext);
   const [ togleMenu, setTogleMenu ] = useState(false);
-  const [ disabledButton, setDisabledButton ] = useState("");
-  const [ error, setError ] = useState("");
 
   if(!user || !user.token){
     history.push('/login')
