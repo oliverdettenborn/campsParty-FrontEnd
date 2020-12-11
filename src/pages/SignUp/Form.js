@@ -83,7 +83,7 @@ const Container = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 70%;
+  width: 75%;
   height: 500px;
   background: #34d1bf;
   border-radius: 15px;

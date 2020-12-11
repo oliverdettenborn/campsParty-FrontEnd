@@ -9,7 +9,7 @@ import Form from './Form';
 export default function FormUser() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-  const { formData, setFormData } = useContext(FormContext);
+  const { formData, setFormData, notHotelList } = useContext(FormContext);
   const [ togleMenu, setTogleMenu ] = useState(false);
   const [ disabledButton, setDisabledButton ] = useState("");
   const [ error, setError ] = useState("");
@@ -44,8 +44,8 @@ export default function FormUser() {
       postalCode,
       gender,
       phone,
-      accommodationId: "6",
-      admissionCost: "0,00"
+      accommodationId: (user.ticketType !== 'hotel') && String(notHotelList.find(e => e.type === user.ticketType).id),
+      admissionCost: (user.ticketType !== 'hotel') && notHotelList.find(e => e.type === user.ticketType).price.split("R$ ")[1]
     }
     setFormData(data);
 
