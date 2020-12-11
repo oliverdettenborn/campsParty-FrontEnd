@@ -5,8 +5,11 @@ import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
 import ActivitiesOfTheDay from './ActivitiesOfTheDay';
+import { PageTwoColumn, RightBlackBox, Button, MenuParticipant } from '../../components';
+import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
+  const [ togleMenu, setTogleMenu ] = useState(false);
   const days = ['friday', 'saturday', 'sunday'];
   const { chosenActivities } = useContext(FormContext);
 
@@ -33,13 +36,10 @@ export default function ActivitiesChoosing() {
   }
 
   return (
-    <>
-      <Container>
-        <LeftColumn>
-          <Message>Chegou a hora de escolher suas atividades!</Message>
-        </LeftColumn>
-  
-        <MainContent userHasFinished={countChosenActivities() === 9}>
+    <PageTwoColumn>
+      <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu} />
+      <RightBlackBox onClick={() => setTogleMenu(false)}>
+      <MainContent userHasFinished={countChosenActivities() === 9}>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
@@ -51,35 +51,10 @@ export default function ActivitiesChoosing() {
 
           <Link to='/participante' onClick={sendChosenActivities}>Concluir</Link>
         </MainContent>
-      </Container>
-    </>
+      </RightBlackBox>
+    </PageTwoColumn>
   )
 }
-
-const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding-left: 30%;
-
-  @media (max-width: 700px) {
-    padding-left: 0;
-  }
-`;
-
-const LeftColumn = styled.aside`
-  position: fixed;
-  left: 0;
-  height: 100vh;
-  width: 30%;
-  background-color: #34D1BF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
 
 const Message = styled.span`
   font-family: 'Chelsea Market', cursive;
@@ -87,6 +62,9 @@ const Message = styled.span`
   line-height: 40px;
   color: white;
   text-align: center;
+  border-bottom: 1px solid #EFEFEF;
+  width:74%;
+  padding-bottom: 15px;
 `;
 
 const MainContent = styled.div`
@@ -94,6 +72,9 @@ const MainContent = styled.div`
   flex-direction: column;
   padding: 20px 50px;
   background: #EFEFEF;
+  width: 75%;
+  border-radius: 15px;
+  margin-top: 40px;
 
   & > a {
     color: white;
@@ -106,5 +87,18 @@ const MainContent = styled.div`
       pointer-events: ${userHasFinished ? 'initial' : 'none'};
       background: ${({ userHasFinished }) => userHasFinished ? 'green' : 'gray'};
     `}
+  }
+  button{
+    margin: 0 auto;
+  }
+
+  ${media}{
+    width: 90%;
+    padding: 20px 10px;
+
+    button{
+      width: 60%;
+      height: 40px;
+    }
   }
 `;

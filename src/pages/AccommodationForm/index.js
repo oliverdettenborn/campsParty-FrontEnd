@@ -1,42 +1,51 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
+import styled from 'styled-components';
+import FormContext from "../../context/FormContext";
 
-import { Container } from "./AccommodationFormStyle";
-import HotelItem from './HotelItem';
-import UserContext from "../../context/UserContext";
+import { PageTwoColumn, RightBlackBox, MenuParticipant, HotelItem } from '../../components';
 
 export default function AccomodationChoosing() {
-    const [hotelsList, serHotelsList] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const { user } = useContext(UserContext);
-
-    useEffect(() => {
-        const headers = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/api/partners/hotels`)
-            .then(r => {
-                serHotelsList(r.data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err.response);
-            });
-    }, []);
+    const { loading, hotelsList} = useContext(FormContext);
+    const [ togleMenu, setTogleMenu ] = useState(false);
 
     return (
-        <Container>
-            <div>
-                <h2>Onde você gostaria de se hospedar?</h2>
-            </div>
+        <PageTwoColumn>
+            <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu}/>
+            <RightBlackBox onClick={() => setTogleMenu(false)}>
+            <Container>
+                <div>
+                    <h2>Onde você gostaria de se hospedar?</h2>
+                </div>
 
-            <ul>
-                {loading ? 'Carregando...' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
-            </ul>
-        </Container>
+                <ul>
+                    {loading ? 'Carregando...' : hotelsList.map(h => <HotelItem key={h.id} hotel={h} />)}
+                </ul>
+            </Container>
+            </RightBlackBox>
+        </PageTwoColumn>
     );
 }
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-family: 'Chelsea Market', cursive;
+    color: #EFEFEF;
+    padding: 30px;
+
+    & > div {
+        border-bottom: 1px solid white;
+        padding-bottom: 15px;
+        width: 100%;
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+
+    ul {
+        flex-grow: 1;
+        text-align: center;
+    }
+    h2{
+        text-align: center;
+    }
+`;

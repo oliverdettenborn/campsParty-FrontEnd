@@ -1,25 +1,42 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Modal from 'react-modal';
-
-import FormContext from "../../context/FormContext";
+import axios from 'axios';
+import FormContext from "../context/FormContext";
+import UserContext from "../context/UserContext";
 import { Item, modalStyle, ModalContainer, PriceAndButtons } from './AccommodationFormStyle';
 
 export default function HotelItem({ hotel }) {
     const [isMouseOver, setIsMouseOver] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { setChosenHotel } = useContext(FormContext);
+    const { formData, setFormData } = useContext(FormContext);
+    const { user, setUser } = useContext(UserContext);
     const history = useHistory();
 
     Modal.setAppElement('#root');
 
-    const processHotelChoice = () => {
-        setChosenHotel({
-            name: hotel.name,
-            price: hotel.price
-        });
+    if(!formData.name){
+        history.push('/participante/dados')
+    }
 
-        history.push('/participante/atividades');
+    const processHotelChoice = () => {
+        const data = {...formData, accommodationId: hotel.id, admissionCost: hotel.price}
+        setFormData(data);
+        axios({
+            method: user.completeRegistration ? 'put' : 'post',
+            url: `${process.env.REACT_APP_API_URL}/api/user/subscription`,
+            data,
+            headers: {"Authorization": `Bearer ${user.token}`}
+        })
+        .then(response => {
+            const route = user.completeRegistration ? '/participante/' : '/participante/atividades'
+            history.push(route);
+            setUser({...user, completeRegistration: response.data.user.completeRegistration});
+            setFormData(response.data.subscription);
+        })
+        .catch(() => {
+            alert('Erro ao salvar o hotel escolhido');
+        });
     }
 
     return (

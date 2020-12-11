@@ -10,23 +10,25 @@ export function ClockProvider(props) {
     const [ hours, setHours ] = useState('');
     const [ minutes, setMinutes ] = useState('');
     const [ seconds, setSeconds ] = useState('');
-
-    const finsh = seconds === 0 && minutes === 0 && hours === 0 && days === 0 ? true : false;
-
-    const finalDate = new Date('december 11 2020 18:00:00');
-
-    const updateCountdown = () => {
-        const currentTime = new Date();
-        const differnce = finalDate - currentTime;
-        setDays(Math.floor(differnce / 1000 / 60 / 60 / 24));
-        setHours(Math.floor(differnce / 1000 / 60 / 60) % 24);
-        setMinutes(Math.floor(differnce / 1000 / 60) % 60);
-        setSeconds(Math.floor(differnce / 1000) % 60);
-    }
+    const [ finish, setFinish ] = useState(false);
     
     useEffect(() => {
-        setInterval(updateCountdown, 1000);
-    }, [])
+        const finalDate = new Date('december 11 2020 18:00:00');
+        const updateCountdown = () => {
+            const currentTime = new Date();
+            const differnce = finalDate - currentTime;
+            setDays(Math.floor(differnce / 1000 / 60 / 60 / 24));
+            setHours(Math.floor(differnce / 1000 / 60 / 60) % 24);
+            setMinutes(Math.floor(differnce / 1000 / 60) % 60);
+            setSeconds(Math.floor(differnce / 1000) % 60);
+            if(seconds === 0 && minutes === 0 && hours === 0 && days === 0){
+                setFinish(true);
+            }
+        }
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => { clearInterval(interval)}
+    }, [days, hours, minutes, seconds])
 
     const takes = [
         { time: days, name: 'D', id: 1 },
@@ -36,7 +38,7 @@ export function ClockProvider(props) {
     ];
 
     return (
-        <ClockContext.Provider value={{ days, setDays, hours, setHours, minutes, setMinutes, seconds, setSeconds, takes, finsh }}>
+        <ClockContext.Provider value={{ days, setDays, hours, setHours, minutes, setMinutes, seconds, setSeconds, takes, finish }}>
           {props.children}
         </ClockContext.Provider>
       );

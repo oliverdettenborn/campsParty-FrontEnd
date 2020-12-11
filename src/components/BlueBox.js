@@ -21,6 +21,7 @@ const Container = styled.aside`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 
     @media (max-width: 600px) {
         display: ${props => props.displayMedia ? "block" : "none"};

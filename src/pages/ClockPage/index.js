@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import { Button } from '../../components';
 
@@ -6,17 +7,17 @@ import ClockContext from '../../context/ClockContext';
 import Clock from './Clock';
 
 export default function ClockPage() {
-    const { finsh } = useContext(ClockContext);
+    const { finish } = useContext(ClockContext);
 
     return (
         <Container>
             <Title>Camps Party</Title>
             <Clock />
             <Gray>
-                <img src='./favicon.ico' />
+                <img src='/favicon.ico' alt='Camps Party' />
                 <BottomBox>
-                    { finsh 
-                        ? <Button>QUERO PARTICIPAR</Button> 
+                    { finish 
+                        ? <Link to='/pre-inscricao' ><Button>QUERO PARTICIPAR</Button></Link>
                         : <p>Ansioso pela Camps Party 2021? <br/><br/> As pré-inscrições para o evento iniciam nesta sexta (11/12) às 18hrs.</p>
                     }
                 </BottomBox>
@@ -65,7 +66,6 @@ const Gradient = styled.div `
     width: 50%;
     height: 100%;
     background: linear-gradient(149.71deg, #3454D1 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(329.71deg, #34D1BF 0%, rgba(52, 209, 191, 0) 100%);
-    padding: 10px;
     @media (max-width: 600px) {
         display: none;
     }

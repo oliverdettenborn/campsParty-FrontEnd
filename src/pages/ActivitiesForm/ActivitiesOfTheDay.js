@@ -25,7 +25,8 @@ export default function ActivitiesOfTheDay({ day }) {
         }
 
         axios
-            .get(`${process.env.REACT_APP_API_URL}/api/event/activities/${day}`)
+            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`,
+                { headers: {"Authorization": `Bearer ${user.token}`}})
             .then(r => {
                 setAvailableActivities(r.data);
                 setLoading(false);
@@ -34,7 +35,7 @@ export default function ActivitiesOfTheDay({ day }) {
                 console.log(err);
                 setLoading(false);
             });
-    }, [day]);
+    }, [day, user.token]);
 
     switch(day) {
         case 'friday':

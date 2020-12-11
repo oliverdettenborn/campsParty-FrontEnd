@@ -8,6 +8,10 @@ import RightBlackBox from './RightBlackBox';
 import PageTwoColumn from './PageTwoColumn';
 import OptionsActivities from './OptionsActivities';
 import MenuParticipant from './MenuParticipant';
+import InputWithMask from './InputWithMask';
+import Select from './Select';
+import Card from './Card';
+import HotelItem from './HotelItem';
 
 export {
     Button, 
@@ -20,4 +24,8 @@ export {
     PageTwoColumn,
     OptionsActivities,
     MenuParticipant,
+    InputWithMask,
+    Select,
+    Card,
+    HotelItem
 }
