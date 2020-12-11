@@ -7,9 +7,9 @@ import UserContext from '../../context/UserContext';
 import { Container, Date, MomentsContainer, modalStyle, ModalContainer } from './ActivitiesFormStyle';
 
 export default function ActivitiesOfTheDay({ day, countOneChoice }) {
-    const [availableActivities, setAvailableActivities] = useState([]);
     const { user } = useContext(UserContext);
     const { chosenActivities, setChosenActivities } = useContext(FormContext);
+    const [availableActivities, setAvailableActivities] = useState([]);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
