@@ -2,14 +2,14 @@ import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
-import FormContext from "../../context/FormContext";
-import UserContext from "../../context/UserContext";
+import FormContext from "../context/FormContext";
+import UserContext from "../context/UserContext";
 import { Item, modalStyle, ModalContainer, PriceAndButtons } from './AccommodationFormStyle';
 
 export default function HotelItem({ hotel }) {
     const [isMouseOver, setIsMouseOver] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { setChosenHotel, formData, setFormData } = useContext(FormContext);
+    const { formData, setFormData } = useContext(FormContext);
     const { user, setUser } = useContext(UserContext);
     const history = useHistory();
 
@@ -20,18 +20,17 @@ export default function HotelItem({ hotel }) {
     }
 
     const processHotelChoice = () => {
-        setChosenHotel({
-            name: hotel.name,
-            price: hotel.price
-        });
-        setFormData({...formData, accommodationId: String(hotel.id), admissionCost: hotel.price})
-        axios.post(
-            `${process.env.REACT_APP_API_URL}/api/user/subscription`,
-            formData,
-            { headers: {"Authorization": `Bearer ${user.token}`}
+        const data = {...formData, accommodationId: hotel.id, admissionCost: hotel.price}
+        setFormData(data);
+        axios({
+            method: user.completeRegistration ? 'put' : 'post',
+            url: `${process.env.REACT_APP_API_URL}/api/user/subscription`,
+            data,
+            headers: {"Authorization": `Bearer ${user.token}`}
         })
         .then(response => {
-            history.push('/participante/atividades');
+            const route = user.completeRegistration ? '/participante/' : '/participante/atividades'
+            history.push(route);
             setUser({...user, completeRegistration: response.data.user.completeRegistration});
             setFormData(response.data.subscription);
         })
