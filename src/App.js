@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { UserProvider } from './context/UserContext';
 import { FormProvider } from './context/FormContext';
-import ClockContext from './context/ClockContext';
 import GlobalStyle from './assets/GlobalStyle';
 
 import {
   AccomodationChoosing,
   ActivitiesChoosing,
-  ClockPage,
   FormUser,
   ParticipantPage,
   SignIn,
@@ -18,7 +16,6 @@ import {
 } from './pages';
 
 function App() {
-  const {finish} = useContext(ClockContext);
 
   return (
       <UserProvider>
@@ -26,12 +23,7 @@ function App() {
           <BrowserRouter>
             <GlobalStyle />
             <Switch>
-            {
-              finish 
-                ? (
-                    <>
-                    <Route path='/' exact component={ClockPage} />
-                    <Route path='/pre-inscricao' component={SignUp} />
+                    <Route path='/' component={SignUp} />
                     <Route path='/login' component={SignIn} />
                     <Route path='/participante' exact component={ParticipantPage} />
                     <Route path='/participante/dados' exact component={FormUser} />
@@ -39,10 +31,6 @@ function App() {
                     <Route path='/participante/hospedagem/editar' exact component={AccomodationEdit} />
                     <Route path='/participante/atividades' exact component={ActivitiesChoosing} />
                     <Route path='/participante/visualizar-inscricao' exact component={ViewSubscription} />
-                  </>
-                )
-                :  <Route path='/' exact component={ClockPage} />
-            }
             </Switch>
           </BrowserRouter>
         </FormProvider>
