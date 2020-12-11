@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
@@ -10,6 +11,30 @@ import { PageTwoColumn, RightBlackBox, Button, MenuParticipant, Error } from '..
 import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
+  const [ togleMenu, setTogleMenu ] = useState(false);
+  const days = ['friday', 'saturday', 'sunday'];
+  const { chosenActivities } = useContext(FormContext);
+
+  const sendChosenActivities = () => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/event/users/activities`, chosenActivities) // colocar token
+      .catch(err => console.log(err))
+  }
+
+  const countChosenActivities = () => {
+    const momentsOfTheDay = ['morning', 'afternoon', 'night'];
+    let counter = 0;
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+          const weekDay = days[i];
+          const hourOfTheDay = momentsOfTheDay[j];
+
+          if (chosenActivities[weekDay][hourOfTheDay]) counter++;
+      }
+    }
+
+    return counter;
   let [choicesCounter] = useState(0);
   const days = ['friday', 'saturday', 'sunday'];
   const [ togleMenu, setTogleMenu ] = useState(false);
@@ -60,8 +85,7 @@ export default function ActivitiesChoosing() {
     <PageTwoColumn>
       <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu} />
       <RightBlackBox onClick={() => setTogleMenu(false)}>
-        <Message>Chegou a hora de escolher suas atividades!</Message>
-        <MainContent userHasFinished={choicesCounter === 9}>
+      <MainContent userHasFinished={countChosenActivities() === 9}>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
@@ -72,10 +96,9 @@ export default function ActivitiesChoosing() {
             ))
           }
 
+
+          <Link to='/participante' onClick={sendChosenActivities}>Concluir</Link>
           {error && <Error>{error}</Error>}
-          <Button onClick={sendChosenActivities} disabledButton={disabledButton} width='35%' height='60px'>
-            Concluir
-          </Button>
         </MainContent>
       </RightBlackBox>
     </PageTwoColumn>

@@ -103,16 +103,22 @@ export const ModalContainer = styled.div`
     width: 60vw;
     border-radius: 30px;
     height: 65vh;
-    
-    div {
-        padding: 10px 15px;
-        background: #34D1BF;
-        font-family: 'Chelsea Market', cursive;
-        margin-bottom: 14px;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
+
+    & > span {
+        font-size: 14px;
+        color: yellow;
     }
+`;
+
+export const ActivityBox = styled.div`
+    padding: 10px 15px;
+    background: ${({ isConnected }) => isConnected ? 'yellow' : '#34D1BF'};
+    font-family: 'Chelsea Market', cursive;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    
     ${media}{
         width: 100vw;
         padding: 5px;

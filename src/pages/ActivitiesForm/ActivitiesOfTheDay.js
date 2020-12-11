@@ -4,20 +4,26 @@ import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
 import UserContext from '../../context/UserContext';
-import { Container, Date, MomentsContainer, modalStyle, ModalContainer } from './ActivitiesFormStyle';
+import { Container, Date, MomentsContainer, modalStyle, ModalContainer, ActivityBox } from './ActivitiesFormStyle';
 
-export default function ActivitiesOfTheDay({ day, countOneChoice }) {
-    const { user } = useContext(UserContext);
-    const { chosenActivities, setChosenActivities } = useContext(FormContext);
+export default function ActivitiesOfTheDay({ day }) {
     const [availableActivities, setAvailableActivities] = useState([]);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
+    const { chosenActivities, setChosenActivities } = useContext(FormContext);
+    const { user } = useContext(UserContext)
     let eventDay;
 
     Modal.setAppElement('#root');
 
     useEffect(() => {
+        const headers = {
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
         axios
             .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`,
                 { headers: {"Authorization": `Bearer ${user.token}`}})
@@ -52,10 +58,25 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
         setIsModalOpen(true);
     };
 
-    const chooseActivity = (activityDescription, hourOfTheDay) => {
-        chosenActivities[day][hourOfTheDay] = activityDescription;
+    const chooseActivity = (activityDescription, hourOfTheDay, isConnectedActivity) => {
+        const connectedActivities = availableActivities.map(a => {
+            if (a.isConnected) return a.description;
+        });
+    
+        if (isConnectedActivity) {
+            chosenActivities[day].morning = activityDescription;
+            chosenActivities[day].afternoon = activityDescription;
+            chosenActivities[day].night = activityDescription;
+        }
+        else {
+            if (connectedActivities.includes(chosenActivities[day][hourOfTheDay])) {
+                chosenActivities[day].morning = '';
+                chosenActivities[day].afternoon = '';
+                chosenActivities[day].night = '';
+            }
 
-        countOneChoice();
+            chosenActivities[day][hourOfTheDay] = activityDescription;
+        }
 
         setChosenActivities({...chosenActivities});
         setIsModalOpen(false);
@@ -103,17 +124,25 @@ export default function ActivitiesOfTheDay({ day, countOneChoice }) {
                 <Modal style={modalStyle} isOpen={isModalOpen}>
                     <ModalContainer>
                         {
-                            chosenMomentEvents.map(m => {
+                            chosenMomentEvents.map(e => {
                                 return (
-                                    <div
-                                        key={m.id}
-                                        onClick={() => chooseActivity(m.description, m.hourOfTheDay.toLowerCase())}
-                                    >
-                                        {m.description}
-                                    </div>
+                                    <>
+                                        <ActivityBox
+                                            isConnected={e.isConnected}
+                                            key={e.id}
+                                            onClick={() => chooseActivity(e.description, e.hourOfTheDay.toLowerCase(), e.isConnected)}
+                                        >
+                                            {e.description}
+                                        </ActivityBox>
+                                    </>
                                 );
                             })
                         }
+                        <span>
+                            Atividades destacadas em amarelo duram todo o dia. Logo
+                            todos os campos "Manhã", "Tarde" e "Noite" serão 
+                            preenchidos automaticamente caso sejam escolhidas.
+                        </span>
                     </ModalContainer>
                 </Modal>
             </MomentsContainer>
