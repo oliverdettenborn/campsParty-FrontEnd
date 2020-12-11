@@ -47,7 +47,7 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
                 <BiPencil />
                 Meus dados
               </Link>
-              <Link to='/participante/hospedagem'>
+              <Link to='/participante/hospedagem/editar'>
                 <BiPencil />
                 Acomodação
               </Link>

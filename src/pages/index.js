@@ -6,6 +6,7 @@ import ParticipantPage from './ParticipantPage';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ViewSubscription from './ViewSubscription';
+import AccomodationEdit from './AccomodationEdit';
 
 export {
   AccomodationChoosing,
@@ -16,4 +17,5 @@ export {
   SignIn,
   SignUp,
   ViewSubscription,
+  AccomodationEdit
 }

@@ -13,7 +13,8 @@ import {
   ParticipantPage,
   SignIn,
   SignUp,
-  ViewSubscription
+  ViewSubscription,
+  AccomodationEdit
 } from './pages';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                     <Route path='/participante' exact component={ParticipantPage} />
                     <Route path='/participante/dados' exact component={FormUser} />
                     <Route path='/participante/hospedagem' exact component={AccomodationChoosing} />
+                    <Route path='/participante/hospedagem/editar' exact component={AccomodationEdit} />
                     <Route path='/participante/atividades' exact component={ActivitiesChoosing} />
                     <Route path='/participante/visualizar-inscricao' exact component={ViewSubscription} />
                   </>

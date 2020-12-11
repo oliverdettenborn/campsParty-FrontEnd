@@ -21,16 +21,15 @@ export default function HotelItem({ hotel }) {
             price: hotel.price
         });
         setFormData({...formData, accommodationId: hotel.id, admissionCost: hotel.price})
-        axios({
-            method: user.completeRegistration ? 'put' : 'post',
-            url: `${process.env.REACT_APP_API_URL}/api/user/subscription`,
-            data: formData,
-            headers: {"Authorization": `Bearer ${user.token}`}
+        axios.post(
+            `${process.env.REACT_APP_API_URL}/api/user/subscription`,
+            formData,
+            { headers: {"Authorization": `Bearer ${user.token}`}
         })
         .then(response => {
-            setUser(response.data.user);
-            setFormData(response.data.subscription);
             history.push('/participante/atividades');
+            setUser({...user, completeRegistration: response.data.user.completeRegistration});
+            setFormData(response.data.subscription);
         })
         .catch(() => {
             alert('Erro ao salvar o hotel escolhido');

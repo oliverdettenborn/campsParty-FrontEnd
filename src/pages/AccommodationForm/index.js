@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
+import FormContext from "../../context/FormContext";
 
 import { Container } from "./AccommodationFormStyle";
 import HotelItem from './HotelItem';
 
 export default function AccomodationChoosing() {
-    const [hotelsList, serHotelsList] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/partners/hotels`) // colocar headers de autorização
-            .then(r => {
-                serHotelsList(r.data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.log(err.response);
-            });
-    }, []);
+    const { loading, hotelsList} = useContext(FormContext);
 
     return (
         <Container>
