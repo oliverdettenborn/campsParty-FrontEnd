@@ -39,6 +39,7 @@ const SignInLink = styled(Link)`
   left: 1.5%;
   text-align: center;
   width: calc(30% - 30px);
+  z-index: 11;
 
   :hover {
     text-decoration: underline;
