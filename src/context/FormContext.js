@@ -51,14 +51,24 @@ export function FormProvider(props) {
       .catch(err => {
         console.log(err.response);
       });
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/user/subscription`, { headers: {"Authorization": `Bearer ${user.token}`}})
-      .then(response => {
-        setFormData(response.data);
-      })
-      .catch(err => {
-        console.log(err.response);
-      });
+    if(user.token){
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/api/user/subscription`, { headers: {"Authorization": `Bearer ${user.token}`}})
+        .then(response => {
+          setFormData(response.data);
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/api/event/activities/user`, { headers: {"Authorization": `Bearer ${user.token}`}})
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
+    }
   }, [user.token]);
 
   const value = {

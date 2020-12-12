@@ -7,12 +7,12 @@ import UserContext from '../../context/UserContext';
 import { Container, Date, MomentsContainer, modalStyle, ModalContainer, ActivityBox } from './ActivitiesFormStyle';
 
 export default function ActivitiesOfTheDay({ day }) {
+    const { user } = useContext(UserContext);
     const [availableActivities, setAvailableActivities] = useState([]);
     const [chosenMomentEvents, setChosenMomentEvents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const { chosenActivities, setChosenActivities } = useContext(FormContext);
-    const { user } = useContext(UserContext)
     let eventDay;
 
     Modal.setAppElement('#root');
@@ -25,7 +25,7 @@ export default function ActivitiesOfTheDay({ day }) {
         }
 
         axios
-            .get(`${process.env.REACT_APP_API_URL}/event/activities/${day}`,
+            .get(`${process.env.REACT_APP_API_URL}/api/event/activities/${day}`,
                 { headers: {"Authorization": `Bearer ${user.token}`}})
             .then(r => {
                 setAvailableActivities(r.data);

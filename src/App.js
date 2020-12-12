@@ -31,7 +31,7 @@ function App() {
                 ? (
                     <>
                     <Route path='/' exact component={ClockPage} />
-                    <Route path='/pre-inscricao' component={SignUp} />
+                    <Route path='/pre-inscricao' exact component={SignUp} />
                     <Route path='/login' component={SignIn} />
                     <Route path='/participante' exact component={ParticipantPage} />
                     <Route path='/participante/dados' exact component={FormUser} />

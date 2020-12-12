@@ -1,25 +1,25 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
+import UserContext from '../../context/UserContext';
 import ActivitiesOfTheDay from './ActivitiesOfTheDay';
-import { PageTwoColumn, RightBlackBox, Button, MenuParticipant } from '../../components';
+import { PageTwoColumn, RightBlackBox, MenuParticipant, Button, Error } from '../../components';
 import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
   const [ togleMenu, setTogleMenu ] = useState(false);
-  const days = ['friday', 'saturday', 'sunday'];
   const { chosenActivities } = useContext(FormContext);
+  const { user, setUser } = useContext(UserContext);
+  const history = useHistory();
+  const [ disabledButton, setDisabledButton ] = useState(true);
+  const [ error, setError ] = useState("");
+  const days = ['friday', 'saturday', 'sunday'];
 
-  const sendChosenActivities = () => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/api/event/users/activities`, chosenActivities) // colocar token
-      .catch(err => console.log(err))
-  }
 
-  const countChosenActivities = () => {
+  useEffect(() => {
     const momentsOfTheDay = ['morning', 'afternoon', 'night'];
     let counter = 0;
 
@@ -31,15 +31,44 @@ export default function ActivitiesChoosing() {
           if (chosenActivities[weekDay][hourOfTheDay]) counter++;
       }
     }
+    console.log(counter);
 
-    return counter;
+    (counter === 9) && setDisabledButton(false);
+  }, [chosenActivities]);
+
+  const sendChosenActivities = () => {
+    if(disabledButton) return;
+    setDisabledButton(true);
+
+    axios({
+      method: user.choosedActivities ? 'put' : 'post',
+      url: `${process.env.REACT_APP_API_URL}/api/event/users/activities`,
+      chosenActivities,
+      headers: {"Authorization": `Bearer ${user.token}`}
+    })
+    .then(() => {
+      setUser({...user, choosedActivities: true})
+      history.push('/participante')
+    })
+    .catch(err => {
+      if (err.response.status === 422) { 
+        setError('Preencha corretamente os campos');
+      } else if (err.response.status === 401) {
+        setError('Usuário não logado');
+        setUser({});
+        history.push('/login');
+      } else {
+        setError('Houve um erro ao cadastrar');
+      }
+      setDisabledButton(false);
+    });
   }
 
   return (
     <PageTwoColumn>
       <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu} />
       <RightBlackBox onClick={() => setTogleMenu(false)}>
-      <MainContent userHasFinished={countChosenActivities() === 9}>
+      <MainContent>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
@@ -48,8 +77,16 @@ export default function ActivitiesChoosing() {
               />
             ))
           }
+          <Button
+            disabledButton={disabledButton}
+            onClick={sendChosenActivities}
+            width='60%'
+            height='50px'
+          >
+            Concluir
+          </Button>
 
-          <Link to='/participante' onClick={sendChosenActivities}>Concluir</Link>
+          {error && <Error>{error}</Error>}
         </MainContent>
       </RightBlackBox>
     </PageTwoColumn>
@@ -82,11 +119,7 @@ const MainContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    ${({ userHasFinished }) => css`
-      pointer-events: ${userHasFinished ? 'initial' : 'none'};
-      background: ${({ userHasFinished }) => userHasFinished ? 'green' : 'gray'};
-    `}
+    
   }
   button{
     margin: 0 auto;
