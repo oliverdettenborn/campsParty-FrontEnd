@@ -16,10 +16,10 @@ export default function ClockPage() {
             <Gray>
                 <img src='/favicon.ico' alt='Camps Party' />
                 <BottomBox>
-                    { finish 
-                        ? <Link to='/pre-inscricao' ><Button>QUERO PARTICIPAR</Button></Link>
-                        : <p>Ansioso pela Camps Party 2021? <br/><br/> As pré-inscrições para o evento iniciam nesta sexta (11/12) às 18hrs.</p>
+                    { finish &&
+                        <Link to='/pre-inscricao' ><Button>QUERO PARTICIPAR</Button></Link>
                     }
+                    <p>Ansioso pela Camps Party 2021? <br/><br/> As pré-inscrições para o evento iniciam nesta sexta (11/12) às 18hrs.</p>
                 </BottomBox>
             </Gray>
             <Gradient />

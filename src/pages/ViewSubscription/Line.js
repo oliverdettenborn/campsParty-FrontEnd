@@ -20,6 +20,7 @@ const Label = styled.p`
 const Value = styled.p`
   color: #D1345B;
   text-align: start;
+  margin-top: 10px
 `;
 
 const Container = styled.div`
@@ -35,7 +36,7 @@ const Container = styled.div`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 90%;
   height: 30px;
-  margin: 8px 0;
+  margin: 10px;
 
   ${media}{
     font-size: 14px;

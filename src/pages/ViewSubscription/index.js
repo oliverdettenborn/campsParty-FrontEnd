@@ -32,7 +32,7 @@ export default function ParticipantPage() {
             <ResumeDataUser />
           }
           {
-            (!user.choosedActivities === true) &&
+            (user.choosedActivities === true) &&
             <ResumeActivitiesUser />
           }
         </Container>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import axios from 'axios';
 
 import FormContext from '../../context/FormContext';
@@ -16,8 +16,7 @@ export default function ActivitiesChoosing() {
   const history = useHistory();
   const [ disabledButton, setDisabledButton ] = useState(true);
   const [ error, setError ] = useState("");
-  const days = ['friday', 'saturday', 'sunday'];
-
+  const [days] = useState(['friday', 'saturday', 'sunday']);
 
   useEffect(() => {
     const momentsOfTheDay = ['morning', 'afternoon', 'night'];
@@ -31,19 +30,18 @@ export default function ActivitiesChoosing() {
           if (chosenActivities[weekDay][hourOfTheDay]) counter++;
       }
     }
-    console.log(counter);
-
     (counter === 9) && setDisabledButton(false);
-  }, [chosenActivities]);
+  }, [chosenActivities, days]);
 
   function sendChosenActivities(){
     if(disabledButton) return;
     setDisabledButton(true);
+    const data = chosenActivities;
 
     axios({
       method: user.choosedActivities ? 'put' : 'post',
       url: `${process.env.REACT_APP_API_URL}/api/event/users/activities`,
-      chosenActivities,
+      data,
       headers: {"Authorization": `Bearer ${user.token}`}
     })
     .then(() => {

@@ -40,6 +40,7 @@ const Description = styled.p`
   margin-bottom: 12px;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 15px 0;
 
   ${media}{
     font-size: 14px;

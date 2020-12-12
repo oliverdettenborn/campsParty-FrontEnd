@@ -4,12 +4,12 @@ import styled from 'styled-components'
 import ClockContext from '../../context/ClockContext';
 
 export default function Clock() {
-    const { takes, finish } = useContext(ClockContext);
+    const { takes } = useContext(ClockContext);
 
 
     return (
         <Container>
-            {!finish &&
+            {
                 takes.map((take) => {
                     return (
                         <Time key={take.id}>
