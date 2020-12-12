@@ -17,7 +17,7 @@ export default function ClockPage() {
                 <img src='/favicon.ico' alt='Camps Party' />
                 <BottomBox>
                     { finish &&
-                        <Link to='/pre-inscricao' ><Button width='30%' height='50px'>QUERO PARTICIPAR</Button></Link>
+                        <Link to='/pre-inscricao' ><Button width='40%' height='50px'>QUERO PARTICIPAR</Button></Link>
                     }
                     <p>Ansioso pela Camps Party 2021? <br/><br/> As pré-inscrições para o evento iniciam nesta sexta (11/12) às 18hrs.</p>
                 </BottomBox>
