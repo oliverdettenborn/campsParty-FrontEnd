@@ -11,7 +11,7 @@ export default function Button(props) {
       disabled={props.disabledButton}
     >
       {props.disabledButton
-        ? 'Carregando...'
+        ? '...'
         : props.children
       }
     </StyledButton>
@@ -21,7 +21,7 @@ export default function Button(props) {
 const StyledButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  background-color: #D1345B;
+  background-color: ${props => props.disabled ? 'gray' : '#D1345B'};
   border: none;
 
   font-family: 'Chelsea Market', cursive;

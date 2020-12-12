@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
@@ -6,19 +6,20 @@ import axios from 'axios';
 import FormContext from '../../context/FormContext';
 import UserContext from '../../context/UserContext';
 import ActivitiesOfTheDay from './ActivitiesOfTheDay';
-import { PageTwoColumn, RightBlackBox, MenuParticipant, Error, Button } from '../../components';
+import { PageTwoColumn, RightBlackBox, MenuParticipant, Button, Error } from '../../components';
 import { media } from '../../assets/query';
 
 export default function ActivitiesChoosing() {
   const [ togleMenu, setTogleMenu ] = useState(false);
-  const days = ['friday', 'saturday', 'sunday'];
-  const { chosenActivitiesCounter, setChosenActivitiesCounter, chosenActivities } = useContext(FormContext);
+  const { chosenActivities } = useContext(FormContext);
   const { user, setUser } = useContext(UserContext);
   const history = useHistory();
   const [ disabledButton, setDisabledButton ] = useState(true);
   const [ error, setError ] = useState("");
+  const days = ['friday', 'saturday', 'sunday'];
 
-  function countChosenActivities(){
+
+  useEffect(() => {
     const momentsOfTheDay = ['morning', 'afternoon', 'night'];
     let counter = 0;
 
@@ -30,9 +31,10 @@ export default function ActivitiesChoosing() {
           if (chosenActivities[weekDay][hourOfTheDay]) counter++;
       }
     }
+    console.log(counter);
 
-    return counter;
-  }
+    (counter === 9) && setDisabledButton(false);
+  }, [chosenActivities]);
 
   function sendChosenActivities(){
     if(disabledButton) return;
@@ -62,30 +64,28 @@ export default function ActivitiesChoosing() {
     });
   }
 
-  const changeChosenActivitiesCounter = (operation, number) => {
-    if (operation === '+') {
-      setChosenActivitiesCounter(chosenActivitiesCounter + number);
-    }
-    else {
-      setChosenActivitiesCounter(chosenActivitiesCounter - number);
-    }
-  }
-
   return (
     <PageTwoColumn>
       <MenuParticipant setTogleMenu={setTogleMenu} togleMenu={togleMenu} />
       <RightBlackBox onClick={() => setTogleMenu(false)}>
-      <MainContent userHasFinished={countChosenActivities() === 9}>
+      <MainContent>
           {
             days.map((d, i) => (
               <ActivitiesOfTheDay
                 key={i}
                 day={d}
-                changeChosenActivitiesCounter={changeChosenActivitiesCounter}
               />
             ))
           }
-          <Button disabledButton={disabledButton} onClick={sendChosenActivities}>Concluir</Button>
+          <Button
+            disabledButton={disabledButton}
+            onClick={sendChosenActivities}
+            width='60%'
+            height='50px'
+          >
+            Concluir
+          </Button>
+
           {error && <Error>{error}</Error>}
         </MainContent>
       </RightBlackBox>
@@ -108,11 +108,7 @@ const MainContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    ${({ userHasFinished }) => css`
-      pointer-events: ${userHasFinished ? 'initial' : 'none'};
-      background: ${({ userHasFinished }) => userHasFinished ? 'green' : 'gray'};
-    `}
+    
   }
   button{
     margin: 0 auto;
