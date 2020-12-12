@@ -30,12 +30,7 @@ export function ClockProvider(props) {
         return () => { clearInterval(interval)}
     }, [days, hours, minutes, seconds])
 
-    let takes = [
-        { time: days, name: 'D', id: 1 },
-        { time: hours, name: 'H', id: 2 },
-        { time: minutes, name: 'M', id: 3 },
-        { time: seconds, name: 'S', id: 4 }
-    ];
+    let takes;
 
     if(seconds < 0 && minutes < 0 && hours < 0 && days < 0){
         takes = [
@@ -43,6 +38,13 @@ export function ClockProvider(props) {
             { time: 0, name: 'H', id: 2 },
             { time: 0, name: 'M', id: 3 },
             { time: 0, name: 'S', id: 4 }
+        ];
+    }else{
+        takes = [
+            { time: days, name: 'D', id: 1 },
+            { time: hours, name: 'H', id: 2 },
+            { time: minutes, name: 'M', id: 3 },
+            { time: seconds, name: 'S', id: 4 }
         ];
     }
 

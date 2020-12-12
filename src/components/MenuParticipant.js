@@ -58,8 +58,8 @@ export default function MenuParticipant({ togleMenu,setTogleMenu}) {
             </Menu>
           }
           <Logout onClick={handleLogout}>
-          <IoIosExit />
-            Sair
+            <IoIosExit />
+              Sair
           </Logout>
         </Container>
       </BlueBox>
@@ -158,6 +158,7 @@ const Logout = styled.button`
   position: fixed;
   bottom: 20px;
   left: 5%;
+  z-index: 20;
 
   svg{
     margin-right: 7px;
