@@ -46,8 +46,6 @@ export default function SignIn() {
         });
 
         request.catch(err => {
-            console.log(err);
-            setError(err);
             if (err.response.status === 422) { 
                 setError('Preencha corretamente os campos');
             } else if (err.response.status === 409) {

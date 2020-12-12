@@ -82,7 +82,8 @@ export const modalStyle = {
         'height': '100vh',
         'display': 'flex',
         'justifyContent': 'center',
-        'alignItems': 'center'
+        'alignItems': 'center',
+        'zIndex': '24'
     },
     content: {
         'background': 'none',

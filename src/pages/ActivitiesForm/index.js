@@ -36,7 +36,7 @@ export default function ActivitiesChoosing() {
     (counter === 9) && setDisabledButton(false);
   }, [chosenActivities]);
 
-  const sendChosenActivities = () => {
+  function sendChosenActivities(){
     if(disabledButton) return;
     setDisabledButton(true);
 
@@ -92,17 +92,6 @@ export default function ActivitiesChoosing() {
     </PageTwoColumn>
   )
 }
-
-const Message = styled.span`
-  font-family: 'Chelsea Market', cursive;
-  font-size: 28px;
-  line-height: 40px;
-  color: white;
-  text-align: center;
-  border-bottom: 1px solid #EFEFEF;
-  width:74%;
-  padding-bottom: 15px;
-`;
 
 const MainContent = styled.div`
   display: flex;

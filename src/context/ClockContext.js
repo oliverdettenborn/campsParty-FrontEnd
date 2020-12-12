@@ -21,7 +21,7 @@ export function ClockProvider(props) {
             setHours(Math.floor(differnce / 1000 / 60 / 60) % 24);
             setMinutes(Math.floor(differnce / 1000 / 60) % 60);
             setSeconds(Math.floor(differnce / 1000) % 60);
-            if(seconds === 0 && minutes === 0 && hours === 0 && days === 0){
+            if(seconds < 0 && minutes < 0 && hours < 0 && days < 0){
                 setFinish(true);
             }
         }
