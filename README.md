@@ -22,6 +22,7 @@
   <a style='color:inherit' href="#author">Author</a>
 </p>
 
+<br><br>
 ### Features
 - [x] Start page with a stopwatch to mark the beginning of pre-registration for the event<br>
 - [x] Screen to make the pre-registration and guarantee the reservation of the ticket with the filling of little information <br>
