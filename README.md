@@ -123,52 +123,45 @@ The application layout is available on Vercel:
 <p align='center'>
   Made by Alice Amorim, Gabriel Milhomem, Lucas Kenji, and Thalia Dettenborn 👋🏽 Get in Touch! <br><br>
 
-  <br><br>
-  <p align='center'>
-	  <img src="https://avatars3.githubusercontent.com/u/63621173?s=460&u=66dffbc47b48dfa2799739b3879a018c6c25854f&v=4" width="100px;"/> <br />
-    <sub><b>Alice Amorim</b></sub></a> <br />
-	  <a href="https://www.linkedin.com/in/alice-amorim-3a7760169/">
-      <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-    </a>
-	  <a href="https://github.com/monalice">
-      <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
-    </a>
-  </p>
-
-  <br><br>
-  <p align='center'>
-	  <img src="https://avatars3.githubusercontent.com/u/57379072?s=460&u=8da0b7edee99a3485ca34005188c871d7c5b549a&v=4" width="100px;"/> <br />
-    <sub><b>Gabriel Milhomem</b></sub></a> <br />
-	  <a href="https://www.linkedin.com/in/gabriel-milhomem-cunha/">
-      <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-    </a>
-	  <a href="mailto:gabriell.mil@gmail.com">
-      <img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/>
-    </a>
-	  <a href="https://github.com/gabriel-milhomem">
-      <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
-    </a>
-  </p>
-
-  <br><br>
-  <p align='center'>
-	  <img src="https://avatars3.githubusercontent.com/u/70969946?s=460&u=d873d977cde3717e8bc3631ab4d6a0773ace567d&v=4" width="100px;"/> <br />
-    <sub><b>Lucas Kenji</b></sub></a> <br />
-	  <a href="https://www.linkedin.com/in/lucas-murakami/">
-      <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-    </a>
-	  <a href="https://github.com/luucaskenji">
-      <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
-    </a>
-  </p>
-
-  <br><br>
-  <p align='center'>
-	  <img src="https://avatars0.githubusercontent.com/u/70967247?s=460&u=0684339f0717ae41ce18689351f0215fdf270590&v=4" width="100px;"/> <br />
- <sub><b>Thalia Dettenborn</b></sub></a> <br />
-	  <a href="https://www.linkedin.com/in/thaliarobertadettenborn/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-	  <a href="mailto:thalia.born@gmail.com"><img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/></a>
-	  <a href="https://github.com/thaliadettenborn"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
-  </p>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://avatars3.githubusercontent.com/u/63621173?s=460&u=66dffbc47b48dfa2799739b3879a018c6c25854f&v=4" width="100px;"/> <br />
+        <sub><b>Alice Amorim</b></sub></a> <br />
+        <a href="https://www.linkedin.com/in/alice-amorim-3a7760169/">
+          <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
+        </a>
+        <a href="https://github.com/monalice">
+          <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
+        </a><br />
+      <td align="center">
+        <img src="https://avatars3.githubusercontent.com/u/57379072?s=460&u=8da0b7edee99a3485ca34005188c871d7c5b549a&v=4" width="100px;"/> <br />
+        <sub><b>Gabriel Milhomem</b></sub></a> <br />
+        <a href="https://www.linkedin.com/in/gabriel-milhomem-cunha/">
+          <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
+        </a>
+        <a href="mailto:gabriell.mil@gmail.com">
+          <img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/>
+        </a>
+        <a href="https://github.com/gabriel-milhomem">
+          <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
+        </a><br />
+      <td align="center">
+        <img src="https://avatars3.githubusercontent.com/u/70969946?s=460&u=d873d977cde3717e8bc3631ab4d6a0773ace567d&v=4" width="100px;"/> <br />
+        <sub><b>Lucas Kenji</b></sub></a> <br />
+        <a href="https://www.linkedin.com/in/lucas-murakami/">
+          <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
+        </a>
+        <a href="https://github.com/luucaskenji">
+          <img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" />
+        </a><br />
+      <td align="center">
+        <img src="https://avatars0.githubusercontent.com/u/70967247?s=460&u=0684339f0717ae41ce18689351f0215fdf270590&v=4" width="100px;"/> <br />
+        <sub><b>Thalia Dettenborn</b></sub></a> <br />
+        <a href="https://www.linkedin.com/in/thaliarobertadettenborn/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+        <a href="mailto:thalia.born@gmail.com"><img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/></a>
+        <a href="https://github.com/thaliadettenborn"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a><br />
+    </tr>
+  </table>
 
 </p>
