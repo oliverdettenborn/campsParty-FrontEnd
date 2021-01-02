@@ -84,13 +84,13 @@ The following tools and frameworks were used in the construction of the project:
   <img style='margin: 5px;' src="https://img.shields.io/badge/react-route dom%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
   <img style='margin: 5px;' src='https://img.shields.io/badge/react-modal%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB' />
   <img style='margin: 5px;' src='https://img.shields.io/badge/react-icons%20-%2320232a.svg?&style=for-the-badge&color=f28dc7&logo=react&logoColor=%2361DAFB'>
-  <img src="https://img.shields.io/badge/material%20ui%20-%230081CB.svg?&style=for-the-badge&logo=material-ui&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Joi -%230081CB.svg?&style=for-the-badge&logo=joi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/eslint%20-%234B275F.svg?&style=for-the-badge&logo=eslint"/>
-  <img src="https://img.shields.io/badge/react-input%20mask%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
-  <img src="https://img.shields.io/badge/react-text%20mask%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
-  <img src="https://img.shields.io/badge/text-mask%20addons%20-%2320232a.svg?&style=for-the-badge&logo=text-mask"/>
-  <img src="https://img.shields.io/badge/prettier%20%20-%2335495e.svg?&style=for-the-badge&logo=prettier"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/material%20ui%20-%230081CB.svg?&style=for-the-badge&logo=material-ui&logoColor=white"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/Joi -%230081CB.svg?&style=for-the-badge&logo=joi&logoColor=white"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/eslint%20-%234B275F.svg?&style=for-the-badge&logo=eslint"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/react-input%20mask%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/react-text%20mask%20-%2320232a.svg?&style=for-the-badge&logo=react"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/text-mask%20addons%20-%2320232a.svg?&style=for-the-badge&logo=text-mask"/>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/prettier%20%20-%2335495e.svg?&style=for-the-badge&logo=prettier"/>
 
 
 
